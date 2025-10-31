@@ -24,6 +24,7 @@
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
     header{position:sticky;top:0;z-index:10;background:rgba(11,13,16,.75);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--bord)}
+    body.light header{background:rgba(255,255,255,.75)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;gap:10px;align-items:center;font-weight:700}
     .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--acc))}
@@ -40,7 +41,7 @@
     .hero h1{font-size:40px;line-height:1.15;margin:0 0 12px}
     .hero p{color:var(--muted);margin:0 0 18px}
     .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--bord);background:#0e1116;border-radius:12px;color:var(--text);text-decoration:none;font-weight:600}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--bord);background:var(--bg-2);border-radius:12px;color:var(--text);text-decoration:none;font-weight:600}
     .btn.primary{background:linear-gradient(135deg,var(--pri),var(--acc));border-color:transparent;color:#0c0f14}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
     .stat{background:var(--bg-2);border:1px solid var(--bord);border-radius:12px;padding:12px;text-align:center}
@@ -61,7 +62,7 @@
 
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .contact form{display:grid;gap:10px}
-    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--bord);background:#0b0e13;color:var(--text)}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--bord);background:var(--bg-2);color:var(--text)}
     textarea{min-height:140px;resize:vertical}
     .note{color:var(--muted);font-size:14px}
 
@@ -71,11 +72,18 @@
     .theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--bord);background:var(--bg-2);border-radius:12px;color:var(--text);cursor:pointer}
     .theme-toggle svg{width:18px;height:18px;display:block}
 
+    /* Light-mode mobile dropdown tweaks */
+    body.light .menu-btn, body.light .links a { color: var(--text); }
+    body.light .links { background: var(--bg-2); border: 1px solid var(--bord); }
+    body.light #navLinks { background: var(--bg-2); border: 1px solid var(--bord); }
+    body.light .links a:hover { background: var(--pri); color: #fff; border-radius: 8px; }
+
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr 1fr}
       .contact{grid-template-columns:1fr}
       .links{display:none}
+      .links a{padding:8px 10px;border-radius:8px}
       .menu-btn{display:block}
     }
     @media (max-width:600px){
@@ -284,14 +292,15 @@
         </div>
       </div>
     </section>
+
     <!-- Command Palette -->
-  <div id="cmdk" style="position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.35);backdrop-filter:blur(3px);z-index:50">
-    <div style="margin-top:10vh;max-width:720px;width:92%;background:#0e1116;border:1px solid var(--bord);border-radius:14px;box-shadow:var(--shadow)">
-      <input id="cmdk-input" placeholder="Type to jump… (try: projects, publications, cv)" style="width:100%;padding:14px 16px;border:0;outline:none;background:#0b0e13;color:var(--text);border-bottom:1px solid var(--bord);border-radius:14px 14px 0 0" />
-      <div id="cmdk-results" style="max-height:360px;overflow:auto"></div>
-      <div class="note" style="padding:10px 14px;border-top:1px solid var(--bord)">Press <b>Ctrl/⌘+K</b> to open · <b>Esc</b> to close</div>
+    <div id="cmdk" style="position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.35);backdrop-filter:blur(3px);z-index:50">
+      <div style="margin-top:10vh;max-width:720px;width:92%;background:var(--bg-2);border:1px solid var(--bord);border-radius:14px;box-shadow:var(--shadow)">
+        <input id="cmdk-input" placeholder="Type to jump… (try: projects, publications, cv)" style="width:100%;padding:14px 16px;border:0;outline:none;background:var(--bg);color:var(--text);border-bottom:1px solid var(--bord);border-radius:14px 14px 0 0" />
+        <div id="cmdk-results" style="max-height:360px;overflow:auto"></div>
+        <div class="note" style="padding:10px 14px;border-top:1px solid var(--bord)">Press <b>Ctrl/⌘+K</b> to open · <b>Esc</b> to close</div>
+      </div>
     </div>
-  </div>
 
   </main>
 
@@ -300,19 +309,22 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu toggle (theme-aware)
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
     menuBtn?.addEventListener('click', () => {
       const shown = navLinks.style.display === 'flex';
+      const css = getComputedStyle(document.body);
+      const bg2  = (css.getPropertyValue('--bg-2')||'').trim() || '#ffffff';
+      const bord = (css.getPropertyValue('--bord')||'').trim()  || '#e5e9f0';
       navLinks.style.display = shown ? 'none' : 'flex';
       navLinks.style.flexDirection = 'column';
       navLinks.style.gap = '12px';
       navLinks.style.position = 'absolute';
       navLinks.style.right = '20px';
       navLinks.style.top = '64px';
-      navLinks.style.background = '#0b0d10';
-      navLinks.style.border = '1px solid #1c2129';
+      navLinks.style.background = bg2;
+      navLinks.style.border = `1px solid ${bord}`;
       navLinks.style.padding = '12px';
       navLinks.style.borderRadius = '12px';
     });
@@ -349,23 +361,19 @@
       applyTheme(next);
     });
 
-    // Reveal on scroll
+    // Reveal on scroll (robust + initial pass)
     try{
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
       }, {threshold:.12});
       document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-      // Initial pass for elements already in view
       document.querySelectorAll('.reveal').forEach(el=>{
         const r = el.getBoundingClientRect();
         if(r.top < window.innerHeight) el.classList.add('in');
       });
     }catch(_){
-      // Fallback: if IO unavailable, show all sections
       document.querySelectorAll('.reveal').forEach(el=> el.classList.add('in'));
     }
-
-    // (existing code below remains)
 
     // Command palette (Ctrl/Cmd+K)
     const cmdk = document.getElementById('cmdk');
@@ -383,7 +391,6 @@
       {label:'LinkedIn', action:() => window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
       {label:'Google Scholar', action:() => window.open('https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID','_blank')}
     ];
-
     function renderCmdk(filter=''){
       const q = filter.trim().toLowerCase();
       const res = items.filter(i => i.label.toLowerCase().includes(q));
@@ -391,7 +398,6 @@
     }
     function openCmdk(){ cmdk.style.display='flex'; renderCmdk(); setTimeout(()=>cmdkInput.focus(),0); }
     function closeCmdk(){ cmdk.style.display='none'; cmdkInput.value=''; cmdkResults.innerHTML=''; }
-
     window.addEventListener('keydown', (e) => {
       const isMac = navigator.platform.toUpperCase().includes('MAC');
       if ((isMac && e.metaKey && e.key.toLowerCase()==='k') || (!isMac && e.ctrlKey && e.key.toLowerCase()==='k')) {
@@ -500,7 +506,7 @@
       });
     }
 
-    // ===== Minimal self-tests (to catch syntax issues like "I'll") =====
+    // ===== Minimal self-tests =====
     (function runSelfTests(){
       const tests = [];
       function test(name, fn){
