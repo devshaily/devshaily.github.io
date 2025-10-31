@@ -88,6 +88,22 @@
   <header>
     <div class="container nav">
       <div class="brand"><span class="dot"></span> <span>Shaily Bajpai</span></div>
+      <nav class="links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+        <a href="/Shaily-Bajpai-FlowCV-Resume-20251031.pdf" target="_blank" rel="noopener">CV</a>
+      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <span id="themeLabel">Dark</span>
+        </button>
+        <button class="menu-btn" aria-label="Menu" id="menuBtn">☰</button>
+      </div>
+    </div>
   </header>
 
   <main id="home" class="container">
@@ -334,10 +350,20 @@
     });
 
     // Reveal on scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-    }, {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+    try{
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+      }, {threshold:.12});
+      document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+      // Initial pass for elements already in view
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight) el.classList.add('in');
+      });
+    }catch(_){
+      // Fallback: if IO unavailable, show all sections
+      document.querySelectorAll('.reveal').forEach(el=> el.classList.add('in'));
+    }
 
     // (existing code below remains)
 
