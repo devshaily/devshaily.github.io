@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Shaily Bajpai · AI/ML Researcher & Engineer</title>
 <meta name="description" content="Portfolio of Shaily Bajpai — AI Researcher specialising in Medical Imaging, Computer Vision and LLM systems."/>
+<!-- ⚡ Anti-FOUC: runs before CSS paints, prevents theme flash -->
+<script>
+  (function(){
+    var saved = localStorage.getItem('theme');
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var mode = saved ? saved : (dark ? 'dark' : 'light');
+    if (mode === 'light') document.documentElement.setAttribute('data-theme','light');
+    else document.documentElement.removeAttribute('data-theme');
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -15,22 +25,23 @@
   --accent-dim:rgba(0,201,167,.10);--white:#f5f7f8;
   --shadow:0 10px 40px rgba(0,0,0,.35);
 }
-body.light{
-  --bg:#f4f6f9;--surface:#ffffff;--surface2:#eef1f5;--border:#dde2ea;
-  --text:#0c1116;--muted:#5c6977;--accent:#008f77;--accent2:#d95f38;
-  --accent-dim:rgba(0,143,119,.08);--white:#0c1116;
-  --shadow:0 10px 40px rgba(0,0,0,.08);
+/* ── LIGHT MODE: targets html so it applies before body renders (no FOUC) ── */
+html[data-theme="light"], html[data-theme="light"] body{
+  --bg:#f4f6f9;--surface:#ffffff;--surface2:#eef1f5;--border:#d0d7e2;
+  --text:#0c1116;--muted:#4a5568;--accent:#007a67;--accent2:#c04e28;
+  --accent-dim:rgba(0,122,103,.10);--white:#0c1116;
+  --shadow:0 10px 40px rgba(0,0,0,.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
-body.light::before{opacity:.15}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5;transition:opacity .35s}
+html[data-theme="light"]::before{opacity:.08}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(10,13,15,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:background .3s}
-body.light nav{background:rgba(244,246,249,.88)}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--white);text-decoration:none;letter-spacing:.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(10,13,15,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
+html[data-theme="light"] nav{background:rgba(244,246,249,.92)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--white);text-decoration:none;letter-spacing:.02em;transition:color .35s}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
 .nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -53,7 +64,7 @@ body.light nav{background:rgba(244,246,249,.88)}
 .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;border-radius:8px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Outfit',sans-serif}
 .btn-primary{background:var(--accent);color:#0a0d0f;border:none}
-.btn-primary:hover{background:#00e0bb;transform:translateY(-1px)}
+.btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .btn-secondary{border:1px solid var(--border);color:var(--muted);background:transparent}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
 .hero-social{display:flex;gap:1rem;align-items:center}
@@ -63,17 +74,17 @@ body.light nav{background:rgba(244,246,249,.88)}
 
 /* HERO VISUAL */
 .hero-visual{display:flex;flex-direction:column;gap:1rem;position:relative;z-index:1}
-.avatar-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:center;gap:1.2rem;padding:1.2rem}
+.avatar-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:center;gap:1.2rem;padding:1.2rem;transition:background .35s,border-color .35s}
 .avatar-placeholder{width:72px;height:72px;border-radius:10px;flex-shrink:0;background:var(--surface2);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:1.8rem}
 .avatar-img{width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
 .avatar-info h3{font-size:.95rem;font-weight:500;color:var(--white);margin-bottom:.2rem}
 .avatar-info p{font-size:.78rem;color:var(--muted)}
 .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:border-color .3s}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:border-color .3s,background .35s}
 .stat-card:hover{border-color:var(--accent)}
 .stat-card .num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);line-height:1}
 .stat-card .label{font-size:.7rem;color:var(--muted);margin-top:.25rem;font-family:'DM Mono',monospace;letter-spacing:.08em}
-.focus-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.focus-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:background .35s,border-color .35s}
 .focus-card h4{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}
 .focus-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .focus-tag{font-size:.7rem;padding:.25rem .7rem;border-radius:100px;border:1px solid var(--border);color:var(--muted)}
@@ -91,14 +102,14 @@ section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative
 .about-text p{color:var(--muted);margin-bottom:1rem;font-size:.92rem;line-height:1.9}
 .about-text p strong{color:var(--text);font-weight:500}
 .about-sidebar{display:flex;flex-direction:column;gap:1rem}
-.info-block{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.1rem}
+.info-block{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.1rem;transition:background .35s,border-color .35s}
 .info-block h5{font-size:.65rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
 .info-block p{font-size:.82rem;color:var(--muted);line-height:1.6}
 .info-block p strong{color:var(--text);font-weight:500;display:block}
 
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:border-color .3s}
+.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:border-color .3s,background .35s}
 .skill-group:hover{border-color:var(--accent)}
 .skill-group h4{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.9rem}
 .skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -106,7 +117,7 @@ section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative
 
 /* EXPERIENCE */
 .exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .3s,transform .2s}
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .3s,transform .2s,background .35s}
 .exp-card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .exp-card h3{font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.4rem;line-height:1.4}
 .exp-period{font-size:.68rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.08em;margin-bottom:.5rem}
@@ -114,7 +125,7 @@ section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative
 
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .3s,transform .2s}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .3s,transform .2s,background .35s}
 .project-card:hover{border-color:var(--accent);transform:translateY(-4px)}
 .project-year{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.1em}
 .project-card h3{font-size:.9rem;font-weight:500;color:var(--white);line-height:1.5}
@@ -129,23 +140,36 @@ section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative
 
 /* PUBLICATIONS */
 .pub-list{display:flex;flex-direction:column;gap:1rem}
-.pub-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;transition:border-color .3s,transform .2s}
+.pub-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;transition:border-color .3s,transform .2s,background .35s}
 .pub-card:hover{border-color:var(--accent);transform:translateX(4px)}
 .pub-year{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);writing-mode:vertical-lr;text-orientation:mixed;letter-spacing:.1em;padding-top:.2rem}
 .pub-content h3{font-size:.9rem;font-weight:500;color:var(--white);margin-bottom:.3rem;line-height:1.5}
 .pub-venue{font-size:.72rem;font-family:'DM Mono',monospace;color:var(--accent2);margin-bottom:.35rem}
+.pub-authors{font-size:.75rem;color:var(--muted);margin-bottom:.4rem;line-height:1.5}
+.pub-authors strong{color:var(--text);font-weight:500}
 .pub-note{display:inline-block;font-size:.67rem;padding:.18rem .55rem;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,201,167,.2);margin-bottom:.55rem}
+.pub-note.published{background:rgba(0,201,167,.15);color:var(--accent)}
+.pub-note.review{background:rgba(255,127,87,.1);color:var(--accent2);border-color:rgba(255,127,87,.25)}
 .pub-links{display:flex;gap:.8rem;flex-wrap:wrap}
 .pub-link{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);transition:color .2s,border-color .2s}
 .pub-link:hover{color:var(--accent);border-color:var(--accent)}
 .pub-link.disabled{opacity:.35;pointer-events:none}
 
+/* PATENTS */
+.patent-list{display:flex;flex-direction:column;gap:1rem}
+.patent-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;transition:border-color .3s,background .35s}
+.patent-card:hover{border-color:var(--accent2)}
+.patent-date{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent2);writing-mode:vertical-lr;letter-spacing:.1em;padding-top:.15rem}
+.patent-content h3{font-size:.88rem;font-weight:500;color:var(--white);margin-bottom:.3rem;line-height:1.5}
+.patent-content p{font-size:.78rem;color:var(--muted);line-height:1.6}
+.patent-badge{display:inline-block;font-size:.66rem;padding:.15rem .5rem;border-radius:100px;background:rgba(255,127,87,.1);color:var(--accent2);border:1px solid rgba(255,127,87,.25);margin-bottom:.4rem}
+
 /* EDUCATION */
 .edu-list{display:flex;flex-direction:column;position:relative;padding-left:1.8rem}
 .edu-list::before{content:'';position:absolute;left:0;top:.65rem;bottom:.65rem;width:1px;background:var(--border)}
 .edu-item{position:relative;padding:0 0 2.2rem 1.8rem}
-.edu-item::before{content:'';position:absolute;left:-.28rem;top:.62rem;width:.56rem;height:.56rem;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
-body.light .edu-item::before{border-color:var(--bg)}
+.edu-item::before{content:'';position:absolute;left:-.28rem;top:.62rem;width:.56rem;height:.56rem;border-radius:50%;background:var(--accent);border:2px solid var(--bg);transition:border-color .35s}
+html[data-theme="light"] .edu-item::before{border-color:var(--bg)}
 .edu-period{font-size:.67rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.1em;margin-bottom:.25rem}
 .edu-item h3{font-size:.95rem;font-weight:500;color:var(--white);margin-bottom:.15rem}
 .edu-item .inst{font-size:.82rem;color:var(--accent);margin-bottom:.25rem}
@@ -153,8 +177,8 @@ body.light .edu-item::before{border-color:var(--bg)}
 
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-.contact-form-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.8rem;display:grid;gap:.8rem}
-.contact-form-card input,.contact-form-card textarea{width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;transition:border-color .2s;outline:none}
+.contact-form-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.8rem;display:grid;gap:.8rem;transition:background .35s,border-color .35s}
+.contact-form-card input,.contact-form-card textarea{width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;transition:border-color .2s,background .35s,color .35s;outline:none}
 .contact-form-card input:focus,.contact-form-card textarea:focus{border-color:var(--accent)}
 .contact-form-card textarea{min-height:130px;resize:vertical}
 .form-status{font-size:.75rem;font-family:'DM Mono',monospace;color:var(--accent)}
@@ -170,7 +194,7 @@ footer p{font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace}
 footer a{color:var(--accent);text-decoration:none}
 
 /* CMD PALETTE */
-#cmdk{position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:200}
+#cmdk{position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:200}
 .cmdk-box{margin-top:10vh;max-width:680px;width:92%;background:var(--surface2);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 #cmdk-input{width:100%;padding:1rem 1.2rem;border:0;outline:none;background:var(--surface);color:var(--text);font-family:'Outfit',sans-serif;font-size:.92rem;border-bottom:1px solid var(--border)}
 #cmdk-results{max-height:340px;overflow:auto}
@@ -210,7 +234,10 @@ footer a{color:var(--accent);text-decoration:none}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-btn" id="themeToggle"><span id="themeIcon">🌙</span><span id="themeLabel">Dark</span></button>
+    <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+      <span id="themeIcon"></span>
+      <span id="themeLabel"></span>
+    </button>
     <button class="menu-btn" id="menuBtn">☰</button>
   </div>
 </nav>
@@ -239,10 +266,8 @@ footer a{color:var(--accent);text-decoration:none}
     <p style="margin-top:1.2rem;font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)">Press <kbd style="border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;background:var(--surface)">⌘K</kbd> for quick nav</p>
   </div>
   <div class="hero-visual fade-in">
-    <!-- PHOTO: swap the emoji div below for: <img class="avatar-img" src="photo.jpg" alt="Shaily Bajpai"> -->
     <div class="avatar-card">
-    <!--  <div class="avatar-placeholder">👩‍💻</div>-->
-      <img src="entity.jpg" alt="Shaily Bajpai" class="avatar-img">
+      <img src="entity.jpg" alt="Shaily Bajpai" class="avatar-img" onerror="this.outerHTML='<div class=\'avatar-placeholder\'>👩‍💻</div>'">
       <div class="avatar-info">
         <h3>Shaily Bajpai</h3>
         <p>AI Research Scholar<br/>Chosun University 🇰🇷</p>
@@ -251,8 +276,8 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="stat-cards">
       <div class="stat-card"><div class="num">7</div><div class="label">Publications</div></div>
       <div class="stat-card"><div class="num">4.31</div><div class="label">GPA / 4.5</div></div>
+      <div class="stat-card"><div class="num">2</div><div class="label">Patents Filed</div></div>
       <div class="stat-card"><div class="num">3+</div><div class="label">Live Deploys</div></div>
-      <div class="stat-card"><div class="num">∞</div><div class="label">Curiosity</div></div>
     </div>
     <div class="focus-card">
       <h4>Research Focus</h4>
@@ -355,9 +380,9 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="project-card">
         <div class="project-year">2025</div>
         <h3>DualBranchNetwork3D — Liver MRI Segmentation</h3>
-        <p>Hybrid CNN–Swin Transformer model for automated cirrhotic liver segmentation on MRI. Under revision at IEEE Access.</p>
+        <p>Hybrid CNN–Swin Transformer model for automated cirrhotic liver segmentation on MRI. Published in IEEE Access.</p>
         <div class="project-tags"><span class="project-tag">Transformers</span><span class="project-tag">3D CNN</span><span class="project-tag">Medical CV</span></div>
-        <div class="project-links"><span class="note-dim">Preprint on request</span></div>
+        <div class="project-links"><a class="project-link" href="https://doi.org/10.1109/ACCESS.2025.3642267" target="_blank">DOI</a></div>
       </div>
       <div class="project-card">
         <div class="project-year">2025</div>
@@ -399,7 +424,40 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="container">
     <p class="section-label">05 — Publications</p>
     <h2 class="section-title">Research that <em>matters.</em></h2>
-    <div class="pub-list fade-in" id="pubList"></div>
+
+    <p class="sub-heading">Journal Articles</p>
+    <div class="pub-list fade-in" id="journalList"></div>
+
+    <p class="sub-heading" style="margin-top:2rem">Conference Papers</p>
+    <div class="pub-list fade-in" id="confList"></div>
+
+    <p class="sub-heading" style="margin-top:2rem">Patents & Poster</p>
+    <div class="patent-list fade-in">
+      <div class="patent-card">
+        <div class="patent-date">08/2025</div>
+        <div class="patent-content">
+          <span class="patent-badge">Patent Application</span>
+          <h3>Deep Learning-Based Vision Inspection Device and Method</h3>
+          <p>Patent Issuer: Flexigo Co., Ltd. (Korean) · Shaily Bajpai and Lee Ki Yong</p>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div class="patent-date">01/2025</div>
+        <div class="patent-content">
+          <span class="patent-badge">Patent Application</span>
+          <h3>Device and Method for Segmenting Tooth Images in a Dental Diagnostic Device</h3>
+          <p>Patent Issuer: Chosun University Industry-Academia Cooperation Foundation (Korean) · Shaily Bajpai and Bumshik Lee</p>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div class="patent-date">01/2024</div>
+        <div class="patent-content">
+          <span class="patent-badge">Poster Presentation</span>
+          <h3>Missing Teeth Count and Localization Methods in Dental Radiographs: A Review</h3>
+          <p>36th Workshop on Image Processing and Understanding (IPIU 2024) · Shaily Bajpai and Bumshik Lee</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -437,10 +495,10 @@ footer a{color:var(--accent);text-decoration:none}
         <textarea name="message" placeholder="Your message…" required></textarea>
         <button class="btn btn-primary" type="submit" style="width:fit-content">Send Message</button>
         <p class="form-status" id="formStatus"></p>
-        <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io and paste your endpoint URL in the script below</p>
+        <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io → paste your endpoint URL in the script</p>
       </form>
       <div class="contact-links">
-        <a class="contact-link-btn" href="mailto:shaily.bajpai19@gmail.com"><span>Email</span><small>shaily.bajpai19@gmail.com ↗</small></a>
+        <a class="contact-link-btn" href="mailto:shailybajpai.01@gmail.com"><span>Email</span><small>shailybajpai.01@gmail.com ↗</small></a>
         <a class="contact-link-btn" href="https://github.com/devshaily" target="_blank"><span>GitHub</span><small>devshaily ↗</small></a>
         <a class="contact-link-btn" href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank"><span>LinkedIn</span><small>shaily-bajpai ↗</small></a>
         <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
@@ -465,100 +523,136 @@ footer a{color:var(--accent);text-decoration:none}
 </div>
 
 <script>
-// ── PUBLICATIONS (edit here to add/update) ──
-const publications = [
-  { year:'2025', note:'First author · Under Review',
+// ── PUBLICATIONS DATA ──
+const journals = [
+  { year:'2025', status:'review',
     title:'DentAll: Annotation-Efficient Dental Segmentation and Missing-Tooth Localization in Panoramic Radiographs',
-    venue:'Computers in Biology and Medicine', links:{pdf:'',code:''} },
-  { year:'2025', note:'Second author · Revision',
+    venue:'Computers in Biology and Medicine',
+    authors:'Shaily Bajpai, Hamza Shafiq, and Bumshik Lee',
+    links:{pdf:'',doi:''} },
+  { year:'11/2025', status:'published',
     title:'IA-MUNet: A Knowledge-Guided Instance-Aware Mamba-UNet for Efficient Multiclass Dental Image Segmentation',
-    venue:'Knowledge-Based Systems', links:{pdf:'',code:''} },
-  { year:'2025', note:'Third author · Revision',
+    venue:'Knowledge-Based Systems',
+    authors:'Hamza Shafiq, Shaily Bajpai, and Bumshik Lee',
+    links:{pdf:'',doi:'https://doi.org/10.1016/j.knosys.2025.114949'} },
+  { year:'10/2025', status:'published',
     title:'DualBranchNetwork3D: A Hybrid CNN–Swin Transformer Model for Automated Cirrhotic Liver Segmentation on MRI',
-    venue:'IEEE Access', links:{pdf:'',code:''} },
-  { year:'2025', note:'First author',
-    title:'Advanced Teeth Instance Segmentation Using Contextual Spatial Attention and Deeper Mask Head',
-    venue:'IEEE ICCE 2025', links:{pdf:'https://ieeexplore.ieee.org/document/10930043',code:''} },
-  { year:'2024', note:'First author',
-    title:'UNET-based Multiclass Teeth Segmentation in Panoramic Dental Radiographs',
-    venue:'KICS Summer Conference 2024', links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11906278',code:''} },
-  { year:'2023', note:'First author',
-    title:'Advances in Tooth Detection and Segmentation in Dental Panoramic X-ray Images: A Review',
-    venue:'KICS Summer Conference 2023', links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11487625',code:''} },
-  { year:'2022', note:'First author',
-    title:'Development of Ethernet/IP Adapter for Explicit Messaging in Cooperative Robot Communication',
-    venue:'ICCAS 2022', links:{pdf:'https://ieeexplore.ieee.org/document/10003850',code:''} }
+    venue:'IEEE Access',
+    authors:'Siva Tanay Akash Jagarapu, Sashi Kiran Kaata, Shaily Bajpai, M. Raviraja Holla',
+    links:{pdf:'',doi:'https://doi.org/10.1109/ACCESS.2025.3642267'} },
 ];
 
-const pubList = document.getElementById('pubList');
-publications.forEach(p => {
-  const el = document.createElement('div');
-  el.className = 'pub-card';
-  const lnk = (h,l) => h
-    ? `<a class="pub-link" href="${h}" target="_blank" rel="noopener">${l}</a>`
-    : `<span class="pub-link disabled">${l}</span>`;
-  el.innerHTML = `
-    <div class="pub-year">${p.year}</div>
-    <div class="pub-content">
-      <h3>${p.title}</h3>
-      <div class="pub-venue">${p.venue}</div>
-      ${p.note ? `<span class="pub-note">${p.note}</span>` : ''}
-      <div class="pub-links">${lnk(p.links.pdf,'PDF')}${lnk(p.links.code,'Code')}</div>
-    </div>`;
-  pubList.appendChild(el);
-});
+const conferences = [
+  { year:'2025', status:'published',
+    title:'Advanced Teeth Instance Segmentation Using Contextual Spatial Attention and Deeper Mask Head',
+    venue:'IEEE International Conference on Consumer Electronics (ICCE 2025)',
+    authors:'Shaily Bajpai, Pankoo Kim, and Bumshik Lee',
+    links:{pdf:'https://ieeexplore.ieee.org/document/10930043',doi:'https://doi.org/10.1109/ICCE63647.2025.10930043'} },
+  { year:'06/2024', status:'published',
+    title:'UNET-based Multiclass Teeth Segmentation in Panoramic Dental Radiographs',
+    venue:'Korea Communications Society Summer Conference (KICS 2024)',
+    authors:'Shaily Bajpai and Bumshik Lee',
+    links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11906278',doi:''} },
+  { year:'06/2023', status:'published',
+    title:'Advances in Tooth Detection and Segmentation in Dental Panoramic X-ray Images: A Review',
+    venue:'Korea Communications Society Summer Conference (KICS 2023)',
+    authors:'Shaily Bajpai and Bumshik Lee',
+    links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11487625',doi:''} },
+  { year:'11/2022', status:'published',
+    title:'Development of Ethernet/IP Adapter for Explicit Messaging in Cooperative Robot Communication',
+    venue:'22nd International Conference on Control, Automation and Systems (ICCAS 2022) / IEEE',
+    authors:'Shaily Bajpai, Rahul Ranjan, Sungchul Lee, Kyung Oh Lee, Joongeup Kye',
+    links:{pdf:'https://ieeexplore.ieee.org/document/10003850',doi:'https://doi.org/10.23919/ICCAS55662.2022.10003850'} },
+];
 
-// ── THEME ──
-const saved = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-function applyTheme(mode){
-  document.body.classList.toggle('light', mode==='light');
-  document.getElementById('themeLabel').textContent = mode==='light' ? 'Light' : 'Dark';
-  document.getElementById('themeIcon').textContent  = mode==='light' ? '☀️' : '🌙';
+function renderPubs(list, containerId) {
+  const el = document.getElementById(containerId);
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'pub-card';
+    const lnk = (h, l) => h
+      ? `<a class="pub-link" href="${h}" target="_blank" rel="noopener">${l}</a>`
+      : `<span class="pub-link disabled">${l}</span>`;
+    const badge = p.status === 'review'
+      ? `<span class="pub-note review">Under Review</span>`
+      : `<span class="pub-note published">Published</span>`;
+    const hasLinks = p.links.pdf || p.links.doi;
+    card.innerHTML = `
+      <div class="pub-year">${p.year}</div>
+      <div class="pub-content">
+        <h3>${p.title}</h3>
+        <div class="pub-venue">${p.venue}</div>
+        <div class="pub-authors">${p.authors}</div>
+        ${badge}
+        ${hasLinks ? `<div class="pub-links">${p.links.pdf ? lnk(p.links.pdf,'PDF') : ''}${p.links.doi ? lnk(p.links.doi,'DOI') : ''}</div>` : ''}
+      </div>`;
+    el.appendChild(card);
+  });
 }
-applyTheme(saved || (prefersDark ? 'dark' : 'light'));
-document.getElementById('themeToggle').addEventListener('click', ()=>{
-  const next = document.body.classList.contains('light') ? 'dark' : 'light';
-  localStorage.setItem('theme', next); applyTheme(next);
+renderPubs(journals, 'journalList');
+renderPubs(conferences, 'confList');
+
+// ── THEME (fixed) ──
+// Always read from localStorage or system preference — never rely on hardcoded HTML
+function getInitialTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(mode) {
+  if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  else document.documentElement.removeAttribute('data-theme');
+  document.getElementById('themeLabel').textContent = mode === 'light' ? 'Light' : 'Dark';
+  document.getElementById('themeIcon').textContent  = mode === 'light' ? '☀️' : '🌙';
+}
+// Apply immediately (prevents flash)
+applyTheme(getInitialTheme());
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  const next = current === 'light' ? 'dark' : 'light';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
 });
 
 // ── MOBILE MENU ──
-document.getElementById('menuBtn').addEventListener('click', ()=>{
+document.getElementById('menuBtn').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
-document.querySelectorAll('#navLinks a').forEach(a=>{
-  a.addEventListener('click', ()=> document.getElementById('navLinks').classList.remove('open'));
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
 
 // ── SCROLL ANIMATIONS ──
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
-},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(el=>{ io.observe(el);
-  if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+}, {threshold: .08});
+document.querySelectorAll('.fade-in').forEach(el => {
+  io.observe(el);
+  if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
 });
 
 // ── SMOOTH SCROLL ──
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
     const id = a.getAttribute('href');
-    if(!id||id==='#') return;
+    if (!id || id === '#') return;
     e.preventDefault();
     document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
   });
 });
 
 // ── CONTACT FORM ──
-document.getElementById('contactForm')?.addEventListener('submit', async e=>{
+document.getElementById('contactForm')?.addEventListener('submit', async e => {
   e.preventDefault();
   const status = document.getElementById('formStatus');
   status.textContent = 'Sending…';
-  try{
-    const ENDPOINT = 'https://formspree.io/f/your-id-here'; // 👈 Replace with your Formspree endpoint
-    const res = await fetch(ENDPOINT,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
+  try {
+    const ENDPOINT = 'https://formspree.io/f/your-id-here'; // 👈 replace with your Formspree endpoint
+    const res = await fetch(ENDPOINT, {method:'POST', body:new FormData(e.target), headers:{Accept:'application/json'}});
     status.textContent = res.ok ? "Thanks! I'll be in touch soon." : 'Something went wrong — please email me directly.';
-    if(res.ok) e.target.reset();
-  } catch(_){ status.textContent = 'Network error — please email me directly.'; }
+    if (res.ok) e.target.reset();
+  } catch(_) { status.textContent = 'Network error — please email me directly.'; }
 });
 
 // ── FOOTER YEAR ──
@@ -569,37 +663,38 @@ const cmdk = document.getElementById('cmdk');
 const cmdkInput = document.getElementById('cmdk-input');
 const cmdkResults = document.getElementById('cmdk-results');
 const cmdItems = [
-  {label:'Home',          fn:()=>window.scrollTo({top:0,behavior:'smooth'})},
-  {label:'About',         fn:()=>document.querySelector('#about').scrollIntoView({behavior:'smooth'})},
-  {label:'Experience',    fn:()=>document.querySelector('#experience').scrollIntoView({behavior:'smooth'})},
-  {label:'Projects',      fn:()=>document.querySelector('#projects').scrollIntoView({behavior:'smooth'})},
-  {label:'Publications',  fn:()=>document.querySelector('#publications').scrollIntoView({behavior:'smooth'})},
-  {label:'Education',     fn:()=>document.querySelector('#education').scrollIntoView({behavior:'smooth'})},
-  {label:'Contact',       fn:()=>document.querySelector('#contact').scrollIntoView({behavior:'smooth'})},
-  {label:'CV (PDF)',      fn:()=>window.open('CV.pdf','_blank')},
-  {label:'GitHub',        fn:()=>window.open('https://github.com/devshaily','_blank')},
-  {label:'LinkedIn',      fn:()=>window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
-  {label:'Design Portfolio', fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
+  {label:'Home',            fn:()=>window.scrollTo({top:0,behavior:'smooth'})},
+  {label:'About',           fn:()=>document.querySelector('#about').scrollIntoView({behavior:'smooth'})},
+  {label:'Experience',      fn:()=>document.querySelector('#experience').scrollIntoView({behavior:'smooth'})},
+  {label:'Projects',        fn:()=>document.querySelector('#projects').scrollIntoView({behavior:'smooth'})},
+  {label:'Publications',    fn:()=>document.querySelector('#publications').scrollIntoView({behavior:'smooth'})},
+  {label:'Education',       fn:()=>document.querySelector('#education').scrollIntoView({behavior:'smooth'})},
+  {label:'Contact',         fn:()=>document.querySelector('#contact').scrollIntoView({behavior:'smooth'})},
+  {label:'CV (PDF)',        fn:()=>window.open('CV.pdf','_blank')},
+  {label:'GitHub',          fn:()=>window.open('https://github.com/devshaily','_blank')},
+  {label:'LinkedIn',        fn:()=>window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
+  {label:'Google Scholar',  fn:()=>window.open('https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en','_blank')},
+  {label:'Design Portfolio',fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
 ];
-function renderCmdk(q=''){
-  const f = cmdItems.filter(i=>i.label.toLowerCase().includes(q.toLowerCase()));
+function renderCmdk(q='') {
+  const f = cmdItems.filter(i => i.label.toLowerCase().includes(q.toLowerCase()));
   cmdkResults.innerHTML = f.length
-    ? f.map(i=>`<button style="display:block;width:100%;text-align:left;padding:.75rem 1.2rem;background:none;border:0;border-bottom:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'" data-label="${i.label}">${i.label}</button>`).join('')
+    ? f.map(i => `<button style="display:block;width:100%;text-align:left;padding:.75rem 1.2rem;background:none;border:0;border-bottom:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'" data-label="${i.label}">${i.label}</button>`).join('')
     : '<div style="padding:1rem 1.2rem;color:var(--muted);font-size:.82rem">No results</div>';
 }
-const openCmdk = ()=>{ cmdk.style.display='flex'; renderCmdk(); setTimeout(()=>cmdkInput.focus(),0); };
-const closeCmdk = ()=>{ cmdk.style.display='none'; cmdkInput.value=''; };
-window.addEventListener('keydown', e=>{
+const openCmdk  = () => { cmdk.style.display='flex'; renderCmdk(); setTimeout(()=>cmdkInput.focus(),0); };
+const closeCmdk = () => { cmdk.style.display='none'; cmdkInput.value=''; };
+window.addEventListener('keydown', e => {
   const mod = /mac/i.test(navigator.platform) ? e.metaKey : e.ctrlKey;
-  if(mod && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmdk(); }
-  if(e.key==='Escape') closeCmdk();
+  if (mod && e.key.toLowerCase()==='k') { e.preventDefault(); openCmdk(); }
+  if (e.key==='Escape') closeCmdk();
 });
-cmdk.addEventListener('click', e=>{ if(e.target===cmdk) closeCmdk(); });
-cmdkInput.addEventListener('input', ()=>renderCmdk(cmdkInput.value));
-cmdkResults.addEventListener('click', e=>{
+cmdk.addEventListener('click', e => { if (e.target===cmdk) closeCmdk(); });
+cmdkInput.addEventListener('input', () => renderCmdk(cmdkInput.value));
+cmdkResults.addEventListener('click', e => {
   const btn = e.target.closest('button[data-label]');
-  if(!btn) return;
-  cmdItems.find(i=>i.label===btn.getAttribute('data-label'))?.fn();
+  if (!btn) return;
+  cmdItems.find(i => i.label===btn.getAttribute('data-label'))?.fn();
   closeCmdk();
 });
 </script>
