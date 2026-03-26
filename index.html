@@ -5,16 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Shaily Bajpai · AI/ML Researcher & Engineer</title>
 <meta name="description" content="Portfolio of Shaily Bajpai — AI Researcher specialising in Medical Imaging, Computer Vision and LLM systems."/>
-<!-- ⚡ Anti-FOUC: runs before CSS paints, prevents theme flash -->
-<script>
-  (function(){
-    var saved = localStorage.getItem('theme');
-    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var mode = saved ? saved : (dark ? 'dark' : 'light');
-    if (mode === 'light') document.documentElement.setAttribute('data-theme','light');
-    else document.documentElement.removeAttribute('data-theme');
-  })();
-</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2300c9a7'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%230a0d0f' letter-spacing='0.5'>SB</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -25,8 +16,8 @@
   --accent-dim:rgba(0,201,167,.10);--white:#f5f7f8;
   --shadow:0 10px 40px rgba(0,0,0,.35);
 }
-/* ── LIGHT MODE: targets html so it applies before body renders (no FOUC) ── */
-html[data-theme="light"], html[data-theme="light"] body{
+/* ── LIGHT MODE ── */
+body.light{
   --bg:#f4f6f9;--surface:#ffffff;--surface2:#eef1f5;--border:#d0d7e2;
   --text:#0c1116;--muted:#4a5568;--accent:#007a67;--accent2:#c04e28;
   --accent-dim:rgba(0,122,103,.10);--white:#0c1116;
@@ -36,12 +27,14 @@ html[data-theme="light"], html[data-theme="light"] body{
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .35s,color .35s}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5;transition:opacity .35s}
-html[data-theme="light"]::before{opacity:.08}
+body.light::before{opacity:.08}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(10,13,15,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
-html[data-theme="light"] nav{background:rgba(244,246,249,.92)}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--white);text-decoration:none;letter-spacing:.02em;transition:color .35s}
+body.light nav{background:rgba(244,246,249,.92)}
+.nav-logo{display:inline-flex;align-items:center;text-decoration:none;transition:opacity .2s}
+.nav-logo:hover{opacity:.85}
+.nav-logo svg circle{transition:fill .35s}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
 .nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -169,7 +162,7 @@ section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative
 .edu-list::before{content:'';position:absolute;left:0;top:.65rem;bottom:.65rem;width:1px;background:var(--border)}
 .edu-item{position:relative;padding:0 0 2.2rem 1.8rem}
 .edu-item::before{content:'';position:absolute;left:-.28rem;top:.62rem;width:.56rem;height:.56rem;border-radius:50%;background:var(--accent);border:2px solid var(--bg);transition:border-color .35s}
-html[data-theme="light"] .edu-item::before{border-color:var(--bg)}
+body.light .edu-item::before{border-color:var(--bg)}
 .edu-period{font-size:.67rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.1em;margin-bottom:.25rem}
 .edu-item h3{font-size:.95rem;font-weight:500;color:var(--white);margin-bottom:.15rem}
 .edu-item .inst{font-size:.82rem;color:var(--accent);margin-bottom:.25rem}
@@ -225,7 +218,14 @@ footer a{color:var(--accent);text-decoration:none}
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">Shaily<span>.</span></a>
+  <a class="nav-logo" href="#" aria-label="Shaily Bajpai">
+    <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="17" cy="17" r="17" fill="var(--accent)"/>
+      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Georgia, 'DM Serif Display', serif"
+        font-size="13.5" font-weight="700" fill="#0a0d0f" letter-spacing="0.8">SB</text>
+    </svg>
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -234,7 +234,7 @@ footer a{color:var(--accent);text-decoration:none}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
       <span id="themeIcon"></span>
       <span id="themeLabel"></span>
     </button>
@@ -252,7 +252,6 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="hero-actions">
       <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
       <a class="btn btn-secondary" href="#publications">Publications</a>
-      <a class="btn btn-secondary" href="https://shaily.my.canva.site/" target="_blank">Design Portfolio</a>
     </div>
     <div class="hero-social">
       <a href="https://github.com/devshaily" target="_blank">GitHub</a>
@@ -261,7 +260,7 @@ footer a{color:var(--accent);text-decoration:none}
       <span>·</span>
       <a href="https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en" target="_blank">Scholar</a>
       <span>·</span>
-      <a href="mailto:shailybajpai.01@gmail.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#5b28333a323722393a312b3a32756b6a1b3c363a323775383436">Email</a>
     </div>
     <p style="margin-top:1.2rem;font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)">Press <kbd style="border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;background:var(--surface)">⌘K</kbd> for quick nav</p>
   </div>
@@ -275,9 +274,9 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
     <div class="stat-cards">
       <div class="stat-card"><div class="num">7</div><div class="label">Publications</div></div>
-      <div class="stat-card"><div class="num">4.31</div><div class="label">GPA / 4.5</div></div>
+      <div class="stat-card"><div class="num">6+</div><div class="label">Yrs Experience</div></div>
+      <div class="stat-card"><div class="num">3+</div><div class="label">Yrs in AI</div></div>
       <div class="stat-card"><div class="num">2</div><div class="label">Patents Filed</div></div>
-      <div class="stat-card"><div class="num">3+</div><div class="label">Live Deploys</div></div>
     </div>
     <div class="focus-card">
       <h4>Research Focus</h4>
@@ -498,10 +497,10 @@ footer a{color:var(--accent);text-decoration:none}
         <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io → paste your endpoint URL in the script</p>
       </form>
       <div class="contact-links">
-        <a class="contact-link-btn" href="mailto:shailybajpai.01@gmail.com"><span>Email</span><small>shailybajpai.01@gmail.com ↗</small></a>
+        <a class="contact-link-btn" href="/cdn-cgi/l/email-protection#cab9a2aba3a6b3a8aba0baaba3e4fafb8aada7aba3a6e4a9a5a7"><span>Email</span><small><span class="__cf_email__" data-cfemail="89fae1e8e0e5f0ebe8e3f9e8e0a7b9b8c9eee4e8e0e5a7eae6e4">[email&#160;protected]</span> ↗</small></a>
         <a class="contact-link-btn" href="https://github.com/devshaily" target="_blank"><span>GitHub</span><small>devshaily ↗</small></a>
         <a class="contact-link-btn" href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank"><span>LinkedIn</span><small>shaily-bajpai ↗</small></a>
-        <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
+        <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank" style="opacity:.7"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
         <a class="contact-link-btn" href="CV.pdf" download><span>Download CV</span><small>PDF ↗</small></a>
       </div>
     </div>
@@ -522,7 +521,7 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── PUBLICATIONS DATA ──
 const journals = [
   { year:'2025', status:'review',
@@ -600,8 +599,7 @@ function getInitialTheme() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 function applyTheme(mode) {
-  if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
-  else document.documentElement.removeAttribute('data-theme');
+  document.body.classList.toggle('light', mode === 'light');
   document.getElementById('themeLabel').textContent = mode === 'light' ? 'Light' : 'Dark';
   document.getElementById('themeIcon').textContent  = mode === 'light' ? '☀️' : '🌙';
 }
@@ -609,7 +607,7 @@ function applyTheme(mode) {
 applyTheme(getInitialTheme());
 
 document.getElementById('themeToggle').addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  const current = document.body.classList.contains('light') ? 'light' : 'dark';
   const next = current === 'light' ? 'dark' : 'light';
   localStorage.setItem('theme', next);
   applyTheme(next);
@@ -674,7 +672,7 @@ const cmdItems = [
   {label:'GitHub',          fn:()=>window.open('https://github.com/devshaily','_blank')},
   {label:'LinkedIn',        fn:()=>window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
   {label:'Google Scholar',  fn:()=>window.open('https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en','_blank')},
-  {label:'Design Portfolio',fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
+  {label:'Design Portfolio (Canva)', fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
 ];
 function renderCmdk(q='') {
   const f = cmdItems.filter(i => i.label.toLowerCase().includes(q.toLowerCase()));
@@ -690,7 +688,6 @@ window.addEventListener('keydown', e => {
   if (e.key==='Escape') closeCmdk();
 });
 cmdk.addEventListener('click', e => { if (e.target===cmdk) closeCmdk(); });
-cmdkInput.addEventListener('input', () => renderCmdk(cmdkInput.value));
 cmdkResults.addEventListener('click', e => {
   const btn = e.target.closest('button[data-label]');
   if (!btn) return;
