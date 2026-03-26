@@ -1,542 +1,606 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shaily Bajpai · AI/ML Researcher & Engineer</title>
-  <meta name="description" content="Portfolio of Shaily Bajpai — AI Engineer. Slackbot content pipelines, CV/ML, WPF integration." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0d10; --bg-2:#12151a; --text:#e6e8eb; --muted:#a4aab3; --pri:#82aaff; --acc:#c792ea; --card:#0f1216; --bord:#1c2129;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    body.light{
-      --bg:#f7f8fb; --bg-2:#ffffff; --text:#0c1116; --muted:#5c6977; --pri:#3b82f6; --acc:#8b5cf6; --card:#ffffff; --bord:#e5e9f0;
-      --shadow: 0 10px 30px rgba(0,0,0,.06);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%}
-    body{font:16px/1.7 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);letter-spacing:.1px}
-    a{color:var(--pri);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:10;background:rgba(11,13,16,.75);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--bord)}
-    body.light header{background:rgba(255,255,255,.75)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--acc))}
-    .links{display:flex;gap:18px}
-    .links a{color:var(--text);opacity:.8}
-    .links a.active, .links a:hover{opacity:1}
-    .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:26px}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shaily Bajpai · AI/ML Researcher & Engineer</title>
+<meta name="description" content="Portfolio of Shaily Bajpai — AI Researcher specialising in Medical Imaging, Computer Vision and LLM systems."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0d0f;--surface:#111518;--surface2:#181d22;--border:#1e2730;
+  --text:#e8ecef;--muted:#7a8a96;--accent:#00c9a7;--accent2:#ff7f57;
+  --accent-dim:rgba(0,201,167,.10);--white:#f5f7f8;
+  --shadow:0 10px 40px rgba(0,0,0,.35);
+}
+body.light{
+  --bg:#f4f6f9;--surface:#ffffff;--surface2:#eef1f5;--border:#dde2ea;
+  --text:#0c1116;--muted:#5c6977;--accent:#008f77;--accent2:#d95f38;
+  --accent-dim:rgba(0,143,119,.08);--white:#0c1116;
+  --shadow:0 10px 40px rgba(0,0,0,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
+body.light::before{opacity:.15}
 
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:center;padding:64px 0 32px}
-    .card{background:var(--card);border:1px solid var(--bord);border-radius:16px;box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.25)}
-    .p24{padding:24px}
-    .avatar{width:100%;height:auto;border-radius:14px;border:1px solid var(--bord);box-shadow:var(--shadow);margin-bottom:12px;object-fit:cover}
-    .hero h1{font-size:40px;line-height:1.15;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--bord);background:var(--bg-2);border-radius:12px;color:var(--text);text-decoration:none;font-weight:600}
-    .btn.primary{background:linear-gradient(135deg,var(--pri),var(--acc));border-color:transparent;color:#0c0f14}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .stat{background:var(--bg-2);border:1px solid var(--bord);border-radius:12px;padding:12px;text-align:center}
-    .stat b{display:block;font-size:18px}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(10,13,15,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:background .3s}
+body.light nav{background:rgba(244,246,249,.88)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--white);text-decoration:none;letter-spacing:.02em}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;gap:.8rem;align-items:center}
+.theme-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.72rem;font-family:'DM Mono',monospace;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.menu-btn{display:none;background:none;border:0;color:var(--text);font-size:1.4rem;cursor:pointer;line-height:1}
 
-    section{padding:42px 0}
-    h2{font-size:26px;margin:0 0 16px}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 3.5rem 4rem;gap:3.5rem;position:relative}
+.hero::after{content:'';position:absolute;right:0;top:0;width:55%;height:100%;background:radial-gradient(ellipse at 70% 40%,rgba(0,201,167,.07),transparent 65%);pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(0,201,167,.3);padding:.32rem .8rem;border-radius:100px;margin-bottom:1.4rem}
+.hero-tag::before{content:'●';font-size:.45rem}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:1.1;color:var(--white);margin-bottom:.5rem}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:.95rem;color:var(--muted);margin-bottom:1.8rem;font-weight:400}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-desc{font-size:.92rem;color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.85}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;border-radius:8px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Outfit',sans-serif}
+.btn-primary{background:var(--accent);color:#0a0d0f;border:none}
+.btn-primary:hover{background:#00e0bb;transform:translateY(-1px)}
+.btn-secondary{border:1px solid var(--border);color:var(--muted);background:transparent}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.hero-social{display:flex;gap:1rem;align-items:center}
+.hero-social a{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.hero-social a:hover{color:var(--accent)}
+.hero-social span{color:var(--border)}
 
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .project{overflow:hidden}
-    .project h3{margin:0 0 8px;font-size:18px}
-    .project p{margin:0 0 10px;color:var(--muted)}
-    .tags{display:flex;flex-wrap:wrap;gap:8px}
-    .tag{font-size:12px;border:1px solid var(--bord);padding:4px 8px;border-radius:999px;background:var(--bg-2)}
+/* HERO VISUAL */
+.hero-visual{display:flex;flex-direction:column;gap:1rem;position:relative;z-index:1}
+.avatar-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:center;gap:1.2rem;padding:1.2rem}
+.avatar-placeholder{width:72px;height:72px;border-radius:10px;flex-shrink:0;background:var(--surface2);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.avatar-img{width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.avatar-info h3{font-size:.95rem;font-weight:500;color:var(--white);margin-bottom:.2rem}
+.avatar-info p{font-size:.78rem;color:var(--muted)}
+.stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:border-color .3s}
+.stat-card:hover{border-color:var(--accent)}
+.stat-card .num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);line-height:1}
+.stat-card .label{font-size:.7rem;color:var(--muted);margin-top:.25rem;font-family:'DM Mono',monospace;letter-spacing:.08em}
+.focus-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.focus-card h4{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}
+.focus-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.focus-tag{font-size:.7rem;padding:.25rem .7rem;border-radius:100px;border:1px solid var(--border);color:var(--muted)}
 
-    .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .chip{border:1px solid var(--bord);background:var(--bg-2);padding:8px 10px;border-radius:10px}
+/* SECTIONS */
+section{padding:5rem 3.5rem;border-top:1px solid var(--border);position:relative}
+.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:.67rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--white);margin-bottom:2.5rem;line-height:1.2}
+.section-title em{color:var(--accent);font-style:italic}
+.sub-heading{font-size:.68rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.14em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
 
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .contact form{display:grid;gap:10px}
-    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--bord);background:var(--bg-2);color:var(--text)}
-    textarea{min-height:140px;resize:vertical}
-    .note{color:var(--muted);font-size:14px}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:3fr 2fr;gap:3.5rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:.92rem;line-height:1.9}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-sidebar{display:flex;flex-direction:column;gap:1rem}
+.info-block{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.1rem}
+.info-block h5{font-size:.65rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+.info-block p{font-size:.82rem;color:var(--muted);line-height:1.6}
+.info-block p strong{color:var(--text);font-weight:500;display:block}
 
-    footer{border-top:1px solid var(--bord);padding:24px 0;color:var(--muted);text-align:center}
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .6s ease}
-    .reveal.in{opacity:1;transform:none}
-    .theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--bord);background:var(--bg-2);border-radius:12px;color:var(--text);cursor:pointer}
-    .theme-toggle svg{width:18px;height:18px;display:block}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:border-color .3s}
+.skill-group:hover{border-color:var(--accent)}
+.skill-group h4{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.9rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-pill{font-size:.72rem;padding:.25rem .65rem;border-radius:100px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
 
-    /* Light-mode mobile dropdown tweaks */
-    body.light .menu-btn, body.light .links a { color: var(--text); }
-    body.light .links { background: var(--bg-2); border: 1px solid var(--bord); }
-    body.light #navLinks { background: var(--bg-2); border: 1px solid var(--bord); }
-    body.light .links a:hover { background: var(--pri); color: #fff; border-radius: 8px; }
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .3s,transform .2s}
+.exp-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.exp-card h3{font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.4rem;line-height:1.4}
+.exp-period{font-size:.68rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.08em;margin-bottom:.5rem}
+.exp-card p{font-size:.8rem;color:var(--muted);line-height:1.75;margin-bottom:.8rem}
 
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
-      .contact{grid-template-columns:1fr}
-      .links{display:none}
-      .links a{padding:8px 10px;border-radius:8px}
-      .menu-btn{display:block}
-    }
-    @media (max-width:600px){
-      .grid{grid-template-columns:1fr}
-      .hero h1{font-size:32px}
-    }
-  </style>
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .3s,transform .2s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.project-year{font-size:.66rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.1em}
+.project-card h3{font-size:.9rem;font-weight:500;color:var(--white);line-height:1.5}
+.project-card p{font-size:.8rem;color:var(--muted);line-height:1.75;flex:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.project-tag{font-size:.66rem;padding:.2rem .55rem;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,201,167,.2)}
+.project-links{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.project-link{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .2s;border-bottom:1px solid var(--border)}
+.project-link:hover{color:var(--accent);border-color:var(--accent)}
+.project-link::before{content:'↗'}
+.note-dim{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);opacity:.55}
+
+/* PUBLICATIONS */
+.pub-list{display:flex;flex-direction:column;gap:1rem}
+.pub-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;transition:border-color .3s,transform .2s}
+.pub-card:hover{border-color:var(--accent);transform:translateX(4px)}
+.pub-year{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);writing-mode:vertical-lr;text-orientation:mixed;letter-spacing:.1em;padding-top:.2rem}
+.pub-content h3{font-size:.9rem;font-weight:500;color:var(--white);margin-bottom:.3rem;line-height:1.5}
+.pub-venue{font-size:.72rem;font-family:'DM Mono',monospace;color:var(--accent2);margin-bottom:.35rem}
+.pub-note{display:inline-block;font-size:.67rem;padding:.18rem .55rem;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,201,167,.2);margin-bottom:.55rem}
+.pub-links{display:flex;gap:.8rem;flex-wrap:wrap}
+.pub-link{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);transition:color .2s,border-color .2s}
+.pub-link:hover{color:var(--accent);border-color:var(--accent)}
+.pub-link.disabled{opacity:.35;pointer-events:none}
+
+/* EDUCATION */
+.edu-list{display:flex;flex-direction:column;position:relative;padding-left:1.8rem}
+.edu-list::before{content:'';position:absolute;left:0;top:.65rem;bottom:.65rem;width:1px;background:var(--border)}
+.edu-item{position:relative;padding:0 0 2.2rem 1.8rem}
+.edu-item::before{content:'';position:absolute;left:-.28rem;top:.62rem;width:.56rem;height:.56rem;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+body.light .edu-item::before{border-color:var(--bg)}
+.edu-period{font-size:.67rem;font-family:'DM Mono',monospace;color:var(--accent2);letter-spacing:.1em;margin-bottom:.25rem}
+.edu-item h3{font-size:.95rem;font-weight:500;color:var(--white);margin-bottom:.15rem}
+.edu-item .inst{font-size:.82rem;color:var(--accent);margin-bottom:.25rem}
+.edu-item p{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.contact-form-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.8rem;display:grid;gap:.8rem}
+.contact-form-card input,.contact-form-card textarea{width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;transition:border-color .2s;outline:none}
+.contact-form-card input:focus,.contact-form-card textarea:focus{border-color:var(--accent)}
+.contact-form-card textarea{min-height:130px;resize:vertical}
+.form-status{font-size:.75rem;font-family:'DM Mono',monospace;color:var(--accent)}
+.contact-links{display:flex;flex-direction:column;gap:.8rem}
+.contact-link-btn{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all .2s;color:var(--text)}
+.contact-link-btn:hover{border-color:var(--accent);transform:translateX(4px)}
+.contact-link-btn span{font-size:.85rem;font-weight:500}
+.contact-link-btn small{font-size:.68rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.06em}
+
+/* FOOTER */
+footer{padding:1.8rem 3.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace}
+footer a{color:var(--accent);text-decoration:none}
+
+/* CMD PALETTE */
+#cmdk{position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:200}
+.cmdk-box{margin-top:10vh;max-width:680px;width:92%;background:var(--surface2);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+#cmdk-input{width:100%;padding:1rem 1.2rem;border:0;outline:none;background:var(--surface);color:var(--text);font-family:'Outfit',sans-serif;font-size:.92rem;border-bottom:1px solid var(--border)}
+#cmdk-results{max-height:340px;overflow:auto}
+.cmdk-footer{padding:.7rem 1rem;border-top:1px solid var(--border);font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none;flex-direction:column;gap:.8rem;position:absolute;top:60px;right:1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;z-index:50}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}
+  .hero-visual{display:none}
+  section{padding:3.5rem 1.5rem}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+  footer{flex-direction:column;gap:.5rem;padding:1.5rem;text-align:center}
+}
+@media(max-width:600px){
+  .hero h1{font-size:2.5rem}
+  .exp-grid,.projects-grid,.skills-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand"><span class="dot"></span> <span>Shaily Bajpai</span></div>
-      <nav class="links" id="navLinks">
-        <a href="#home" class="active">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
-        <a href="/Shaily-Bajpai-FlowCV-Resume-20251031.pdf" target="_blank" rel="noopener">CV</a>
-      </nav>
-      <div style="display:flex;gap:10px;align-items:center">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-          <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-          <span id="themeLabel">Dark</span>
-        </button>
-        <button class="menu-btn" aria-label="Menu" id="menuBtn">☰</button>
+
+<nav>
+  <a class="nav-logo" href="#">Shaily<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle"><span id="themeIcon">🌙</span><span id="themeLabel">Dark</span></button>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-tag">AI/ML Researcher & Engineer</div>
+    <h1>Shaily<br/><em>Bajpai</em></h1>
+    <p class="hero-sub"><strong>Medical Imaging · Computer Vision · LLM Systems</strong><br/>Chosun University, South Korea</p>
+    <p class="hero-desc">Building adaptive AI systems across LLMs, multimodal models, and classic ML — from dental radiograph segmentation and liver MRI analysis to Slackbots, retrieval pipelines, and WPF integrations.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="Shaily-Bajpai-FlowCV-Resume-20251031.pdf" download>Download CV</a>
+      <a class="btn btn-secondary" href="#publications">Publications</a>
+      <a class="btn btn-secondary" href="https://shaily.my.canva.site/" target="_blank">Design Portfolio</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://github.com/devshaily" target="_blank">GitHub</a>
+      <span>·</span>
+      <a href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank">LinkedIn</a>
+      <span>·</span>
+      <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank">Scholar</a>
+      <span>·</span>
+      <a href="mailto:shaily.bajpai19@gmail.com">Email</a>
+    </div>
+    <p style="margin-top:1.2rem;font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)">Press <kbd style="border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;background:var(--surface)">⌘K</kbd> for quick nav</p>
+  </div>
+  <div class="hero-visual fade-in">
+    <!-- PHOTO: swap the emoji div below for: <img class="avatar-img" src="photo.jpg" alt="Shaily Bajpai"> -->
+    <div class="avatar-card">
+      <div class="avatar-placeholder">👩‍💻</div>
+      <div class="avatar-info">
+        <h3>Shaily Bajpai</h3>
+        <p>AI Research Scholar<br/>Chosun University 🇰🇷</p>
       </div>
     </div>
-  </header>
-
-  <main id="home" class="container">
-    <section class="hero reveal">
-      <div class="card p24">
-        <h1>AI/ML Researcher & Engineer — Multimodal AI · Computer Vision · Human–AI Interaction</h1>
-        <p>
-          I build adaptive AI systems across LLMs/VLMs and classic ML — from Slackbots and retrieval pipelines to medical/computer vision and WPF integrations. I care about robust ML, fast feedback loops, and clean UX.
-        </p>
-        <div class="btns">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="/Shaily-Bajpai-FlowCV-Resume-20251031.pdf" download rel="noopener">Download CV (PDF)</a>
-          <a class="btn" href="https://shaily.my.canva.site/" target="_blank" rel="noopener">Design Portfolio</a>
-          <a class="btn" href="mailto:shaily.bajpai19@gmail.com">Email</a>
-          <a class="btn" href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank" rel="me noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/devshaily" target="_blank" rel="me noopener">GitHub</a>
-          <a class="btn" href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank" rel="me noopener">Google Scholar</a>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>3+</b><span>Production deploys</span></div>
-          <div class="stat"><b>6</b><span>ML projects</span></div>
-          <div class="stat"><b>∞</b><span>Curiosity</span></div>
-        </div>
-      </div>
-      <div class="card p24">
-        <img src="./pic2.png" alt="Pic of Shaily Bajpai" class="avatar" onerror="this.style.display='none'">
-        
-        <h2 style="margin-top:0">Featured</h2>
-        <h3 style="margin:6px 0 8px"><a href="https://slackbot-mvp.onrender.com/" target="_blank" rel="noopener">Slackbot Content Pipeline</a></h3>
-        <p class="note">A Slack app that extracts topics/keywords and builds a content pipeline. Deployed on Render free tier (may cold start).</p>
-        <ul style="margin:0 0 10px 18px">
-          <li>Repo: <a href="https://github.com/devshaily/slackbot-mvp" target="_blank" rel="noopener">github.com/devshaily/slackbot-mvp</a></li>
-          <li>Slack App (private): <a href="https://api.slack.com/apps/A09L48J9MC7" target="_blank" rel="noopener">A09L48J9MC7</a></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Slack API</span><span class="tag">LLM</span>
-        </div>
-        <hr style="border:0;border-top:1px solid var(--bord);margin:16px 0">
-        <h2 style="margin:0 0 8px">Also Featured</h2>
-        <h3 style="margin:6px 0 8px"><a href="#projects" rel="noopener">Multi-Agent Research Assistant</a></h3>
-        <p class="note">Autonomous multi-agent system (Planner · Researcher · Writer · Editor) integrating GPT-4, arXiv, Tavily, Wikipedia. Dockerized, CLI-driven pipeline that generates Markdown/HTML reports.</p>
-        <ul style="margin:0 0 10px 18px">
-          <li>Stack: <span class="tag">Python</span> <span class="tag">OpenAI</span> <span class="tag">APIs</span> <span class="tag">Docker</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">LLM Agents</span><span class="tag">Retrieval</span><span class="tag">Automation</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <div class="grid">
-        <article class="card p24 project">
-          <h3>ML Engineer — FlexiGO (Jan 2025 – Present)</h3>
-          <p>Developed and deployed ML pipelines for industrial defect detection using FastAPI/Docker; integrated inference into C#/WPF UIs; led training & testing for machine vision with SOTA models.</p>
-          <div class="tags"><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">WPF</span><span class="tag">ONNX</span></div>
-        </article>
-        <article class="card p24 project">
-          <h3>Research Assistant — MIP Lab, Chosun Univ. (Feb 2023 – Jan 2025)</h3>
-          <p>Designed deep learning models for medical image segmentation/classification in interdisciplinary teams; authored and co-authored multiple publications.</p>
-          <div class="tags"><span class="tag">Medical CV</span><span class="tag">Segmentation</span><span class="tag">PyTorch</span></div>
-        </article>
-        <article class="card p24 project">
-          <h3>AI Research Assistant — Multi-Agent System (2025)</h3>
-          <p>Built an autonomous multi-agent pipeline (Planner/Researcher/Writer/Editor) for literature synthesis with GPT-4; integrated arXiv, Tavily & Wikipedia APIs; fully Dockerized CLI.</p>
-          <div class="tags"><span class="tag">LLM Agents</span><span class="tag">Docker</span><span class="tag">OpenAI</span></div>
-        </article>
-        <article class="card p24 project">
-          <h3>Technical Head — Mechlergy (2022)</h3>
-          <p>Led technical team from concept to deployment on engineering solutions, including AI integration and systems design.</p>
-          <div class="tags"><span class="tag">Leadership</span><span class="tag">Deployment</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="projects" class="reveal">
-      <h2>Projects</h2>
-
-      <h3 style="margin:6px 0 12px">Research Projects (LLM & Computer Vision)</h3>
-      <div class="grid">
-        <article class="card p24 project">
-          <img src="/img/agent-thumb.jpg" alt="Multi-Agent Research Assistant" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>Multi-Agent Research Assistant</h3>
-          <p>LLM-driven multi-agent pipeline (Planner/Researcher/Writer/Editor) integrating arXiv/Tavily/Wikipedia; Dockerized CLI; outputs Markdown/HTML.</p>
-          <div class="tags"><span class="tag">LLM Agents</span><span class="tag">OpenAI</span><span class="tag">Docker</span></div>
-          <p><a href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">Code (private)</a></p>
-        </article>
-        <article class="card p24 project">
-          <img src="/img/dentall-thumb.jpg" alt="DentAll" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>DentAll</h3>
-          <p>Deep learning for instance-level teeth segmentation and missing-tooth localization on panoramic radiographs.</p>
-          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Segmentation</span><span class="tag">Medical CV</span></div>
-          <p><a href="https://github.com/devshaily" target="_blank" rel="noopener">Notes/Code</a></p>
-        </article>
-        <article class="card p24 project">
-          <img src="/img/liver-thumb.jpg" alt="Liver Segmentation" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>DualBranchNetwork3D</h3>
-          <p>Hybrid CNN–Swin Transformer model for automated cirrhotic liver segmentation on MRI (under revision).</p>
-          <div class="tags"><span class="tag">Transformers</span><span class="tag">3D CNN</span><span class="tag">Medical CV</span></div>
-          <p><span class="note">Preprint/links on request</span></p>
-        </article>
-      </div>
-
-      <h3 style="margin:20px 0 12px">Applied AI / Deployments</h3>
-      <div class="grid">
-        <article class="card p24 project">
-          <img src="/img/slackbot-thumb.jpg" alt="Slackbot Content Pipeline" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>Slackbot Content Pipeline</h3>
-          <p>LLM-powered Slackbot for content ideation and keyword extraction. Deployed on Render; integrates Slack Events API.</p>
-          <div class="tags"><span class="tag">Flask</span><span class="tag">OpenAI API</span><span class="tag">OAuth</span></div>
-          <p>
-            <a href="https://slackbot-mvp.onrender.com/" target="_blank" rel="noopener">Live</a> ·
-            <a href="https://github.com/devshaily/slackbot-mvp" target="_blank" rel="noopener">Code</a>
-          </p>
-        </article>
-        <article class="card p24 project">
-          <img src="/img/defect-thumb.jpg" alt="Industrial Defect Detection" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>Industrial Defect Detection (FlexiGO)</h3>
-          <p>Real-time CV defect detection integrated into a C#/WPF machine UI with ONNX Runtime and FastAPI services.</p>
-          <div class="tags"><span class="tag">ONNX</span><span class="tag">WPF</span><span class="tag">FastAPI</span></div>
-          <p><span class="note">Internal deployment</span></p>
-        </article>
-        <article class="card p24 project">
-          <img src="/img/teachable-thumb.jpg" alt="Interactive CV Apps" style="width:100%;border-radius:12px;border:1px solid var(--bord);margin-bottom:10px" onerror="this.style.display='none'">
-          <h3>Interactive CV Apps</h3>
-          <p>Realtime Object Identification, Voice Selfie, Teachable Machine demos and more.</p>
-          <div class="tags"><span class="tag">TensorFlow.js</span><span class="tag">Web</span></div>
-          <p>
-            <a href="https://devshaily.github.io/ImageIdentificationUsingTeachableMachine/" target="_blank" rel="noopener">Teachable Machine</a>
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications" class="reveal">
-      <h2>Publications</h2>
-  <!-- <p class="note">Maintain a <code>publications.json</code> file at your site root for auto-updates, or edit the list below in code. <a href="https://github.com/devshaily/Publications" target="_blank" rel="noopener">View Publications repo</a></p> -->
-      <div id="pubList" class="grid"></div>
-      <!-- <p class="note">If a link is private or under review, the button will be disabled.</p>-->
-    </section>
-
-    <section id="skills" class="reveal">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span class="chip">LLMs & VLMs</span>
-        <span class="chip">Computer Vision</span>
-        <span class="chip">Medical Imaging</span>
-        <span class="chip">PyTorch / TensorFlow</span>
-        <span class="chip">FastAPI / Docker</span>
-        <span class="chip">ONNX Runtime</span>
-        <span class="chip">C# / WPF Integration</span>
-        <span class="chip">AWS / Azure ML</span>
-      </div>
-    </section>
-
-    <section id="contact" class="reveal">
-      <h2>Contact</h2>
-      <div class="contact">
-        <form id="contactForm" class="card p24">
-          <input type="text" name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <textarea name="message" placeholder="Your message" required></textarea>
-          <button class="btn primary" type="submit">Send Message</button>
-          <p class="note">This form uses Formspree. Replace the endpoint in the script below with your own.</p>
-          <p id="formStatus" class="note" role="status"></p>
-        </form>
-        <div class="card p24">
-          <p><b>Portfolio (Canva):</b> <a href="https://shaily.my.canva.site/" target="_blank" rel="noopener">shaily.my.canva.site</a></p>
-          <p><b>Publications (GitHub):</b> <a href="https://github.com/devshaily/Publications" target="_blank" rel="noopener">github.com/devshaily/Publications</a></p>
-          <p><b>Email:</b> <a href="mailto:shaily.bajpai19@gmail.com">shaily.bajpai19@gmail.com</a></p>
-          <p><b>GitHub:</b> <a href="https://github.com/devshaily" target="_blank" rel="noopener">github.com/devshaily</a></p>
-          <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank" rel="noopener">linkedin.com/in/shaily-bajpai-681157b6</a></p>
-          <p><b>Google Scholar:</b> <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank" rel="noopener">Google Scholar</a></p>
-          <p><b>CV:</b> <a href="/Shaily-Bajpai-FlowCV-Resume-20251031.pdf" download>Download PDF</a></p>
-          <p class="note">For fastest reply, email wins.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Command Palette -->
-    <div id="cmdk" style="position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.35);backdrop-filter:blur(3px);z-index:50">
-      <div style="margin-top:10vh;max-width:720px;width:92%;background:var(--bg-2);border:1px solid var(--bord);border-radius:14px;box-shadow:var(--shadow)">
-        <input id="cmdk-input" placeholder="Type to jump… (try: projects, publications, cv)" style="width:100%;padding:14px 16px;border:0;outline:none;background:var(--bg);color:var(--text);border-bottom:1px solid var(--bord);border-radius:14px 14px 0 0" />
-        <div id="cmdk-results" style="max-height:360px;overflow:auto"></div>
-        <div class="note" style="padding:10px 14px;border-top:1px solid var(--bord)">Press <b>Ctrl/⌘+K</b> to open · <b>Esc</b> to close</div>
+    <div class="stat-cards">
+      <div class="stat-card"><div class="num">7</div><div class="label">Publications</div></div>
+      <div class="stat-card"><div class="num">4.31</div><div class="label">GPA / 4.5</div></div>
+      <div class="stat-card"><div class="num">3+</div><div class="label">Live Deploys</div></div>
+      <div class="stat-card"><div class="num">∞</div><div class="label">Curiosity</div></div>
+    </div>
+    <div class="focus-card">
+      <h4>Research Focus</h4>
+      <div class="focus-tags">
+        <span class="focus-tag">Medical Imaging</span>
+        <span class="focus-tag">LLMs / VLMs</span>
+        <span class="focus-tag">Computer Vision</span>
+        <span class="focus-tag">Instance Segmentation</span>
+        <span class="focus-tag">PyTorch</span>
+        <span class="focus-tag">Multi-Agent AI</span>
       </div>
     </div>
+  </div>
+</section>
 
-  </main>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">01 — About</p>
+    <h2 class="section-title">Driven by <em>curiosity,</em><br/>grounded in data.</h2>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I am a <strong>dynamic and innovative AI researcher</strong> currently based at Chosun University, South Korea, where I focus on deep learning for medical imaging — particularly dental panoramic radiographs and liver MRI — to assist clinicians with more accurate, efficient decision-making.</p>
+        <p>Beyond medical AI, I build <strong>applied LLM systems</strong>: Slackbot content pipelines, multi-agent research assistants, and real-time defect detection integrated into industrial UIs. I care about the full stack — from model training to production deployment.</p>
+        <p>With a BTech in Computer Science (Lovely Professional University) and an MSc in Information & Communication Engineering specialising in Deep Learning (Chosun University, GPA 4.31/4.5), I bring academic rigour and hands-on engineering to every project.</p>
+        <p>Actively seeking opportunities in <strong>Deep Learning, Medical AI, Computer Vision, and LLM Engineering</strong> — research and industry alike.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="info-block"><h5>Current Role</h5><p><strong>ML Engineer @ FlexiGO</strong>Industrial defect detection · FastAPI · WPF</p></div>
+        <div class="info-block"><h5>Research</h5><p>Medical Image Analysis · Dental AI · LLM Agents · Multi-Agent Systems</p></div>
+        <div class="info-block"><h5>Languages</h5><p>English (Fluent) · Hindi (Native) · Korean (Basic)</p></div>
+        <div class="info-block"><h5>Location</h5><p>South Korea 🇰🇷 · Open to relocation</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    © <span id="y"></span> Shaily Bajpai · Built with GitHub Pages
-  </footer>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">02 — Skills</p>
+    <h2 class="section-title">Tools of the <em>trade.</em></h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-group"><h4>AI / ML</h4><div class="skill-pills"><span class="skill-pill">LLMs & VLMs</span><span class="skill-pill">Computer Vision</span><span class="skill-pill">Medical Imaging</span><span class="skill-pill">Instance Segmentation</span><span class="skill-pill">Multi-Agent Systems</span></div></div>
+      <div class="skill-group"><h4>Frameworks</h4><div class="skill-pills"><span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">OpenCV</span><span class="skill-pill">ONNX Runtime</span><span class="skill-pill">Transformers</span></div></div>
+      <div class="skill-group"><h4>Engineering</h4><div class="skill-pills"><span class="skill-pill">FastAPI</span><span class="skill-pill">Docker</span><span class="skill-pill">Flask</span><span class="skill-pill">C# / WPF</span><span class="skill-pill">AWS / Azure ML</span></div></div>
+      <div class="skill-group"><h4>Languages & Tools</h4><div class="skill-pills"><span class="skill-pill">Python</span><span class="skill-pill">C++</span><span class="skill-pill">JavaScript</span><span class="skill-pill">R</span><span class="skill-pill">GitHub</span><span class="skill-pill">Jupyter</span></div></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Mobile menu toggle (theme-aware)
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-    menuBtn?.addEventListener('click', () => {
-      const shown = navLinks.style.display === 'flex';
-      const css = getComputedStyle(document.body);
-      const bg2  = (css.getPropertyValue('--bg-2')||'').trim() || '#ffffff';
-      const bord = (css.getPropertyValue('--bord')||'').trim()  || '#e5e9f0';
-      navLinks.style.display = shown ? 'none' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.gap = '12px';
-      navLinks.style.position = 'absolute';
-      navLinks.style.right = '20px';
-      navLinks.style.top = '64px';
-      navLinks.style.background = bg2;
-      navLinks.style.border = `1px solid ${bord}`;
-      navLinks.style.padding = '12px';
-      navLinks.style.borderRadius = '12px';
-    });
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">03 — Experience</p>
+    <h2 class="section-title">Where I've <em>worked.</em></h2>
+    <div class="exp-grid fade-in">
+      <div class="exp-card">
+        <h3>ML Engineer — FlexiGO</h3>
+        <div class="exp-period">Jan 2025 – Present</div>
+        <p>Developed and deployed ML pipelines for industrial defect detection using FastAPI & Docker; integrated inference into C#/WPF UIs; led training & testing with SOTA models.</p>
+        <div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">Docker</span><span class="project-tag">WPF</span><span class="project-tag">ONNX</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>Research Assistant — MIP Lab, Chosun University</h3>
+        <div class="exp-period">Feb 2023 – Jan 2025</div>
+        <p>Designed deep learning models for medical image segmentation and classification; authored and co-authored multiple publications in interdisciplinary teams.</p>
+        <div class="project-tags"><span class="project-tag">Medical CV</span><span class="project-tag">PyTorch</span><span class="project-tag">Segmentation</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>AI Research Assistant — Multi-Agent Pipeline</h3>
+        <div class="exp-period">2025</div>
+        <p>Built an autonomous multi-agent pipeline (Planner · Researcher · Writer · Editor) for literature synthesis with GPT-4; integrated arXiv, Tavily & Wikipedia APIs; Dockerized CLI.</p>
+        <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">Docker</span><span class="project-tag">OpenAI</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>Technical Head — Mechlergy</h3>
+        <div class="exp-period">2022</div>
+        <p>Led technical team from concept to deployment on engineering solutions, including AI integration and systems design.</p>
+        <div class="project-tags"><span class="project-tag">Leadership</span><span class="project-tag">AI Systems</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Smooth scroll & active link
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if(!id || id === '#') return;
-        e.preventDefault();
-        document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
-        document.querySelectorAll('.links a').forEach(x=>x.classList.remove('active'));
-        a.classList.add('active');
-        history.pushState(null, '', id);
-      });
-    });
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">04 — Projects</p>
+    <h2 class="section-title">Built with <em>purpose.</em></h2>
+    <p class="sub-heading">Research Projects</p>
+    <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>DentAll — Teeth Segmentation & Missing-Tooth Localisation</h3>
+        <p>Annotation-efficient deep learning for instance-level teeth segmentation and missing-tooth detection in panoramic radiographs. Under review at Computers in Biology and Medicine.</p>
+        <div class="project-tags"><span class="project-tag">PyTorch</span><span class="project-tag">Instance Segmentation</span><span class="project-tag">Medical AI</span></div>
+        <div class="project-links"><a class="project-link" href="https://github.com/devshaily" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>DualBranchNetwork3D — Liver MRI Segmentation</h3>
+        <p>Hybrid CNN–Swin Transformer model for automated cirrhotic liver segmentation on MRI. Under revision at IEEE Access.</p>
+        <div class="project-tags"><span class="project-tag">Transformers</span><span class="project-tag">3D CNN</span><span class="project-tag">Medical CV</span></div>
+        <div class="project-links"><span class="note-dim">Preprint on request</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>Multi-Agent Research Assistant</h3>
+        <p>Autonomous pipeline (Planner · Researcher · Writer · Editor) integrating GPT-4, arXiv, Tavily, Wikipedia. Dockerized CLI generates Markdown/HTML reports.</p>
+        <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">OpenAI</span><span class="project-tag">Docker</span></div>
+        <div class="project-links"><span class="note-dim">Code private</span></div>
+      </div>
+    </div>
+    <p class="sub-heading" style="margin-top:2.5rem">Applied AI & Deployments</p>
+    <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>Slackbot Content Pipeline</h3>
+        <p>LLM-powered Slackbot for content ideation and keyword extraction. Deployed live on Render; integrates Slack Events API and OAuth.</p>
+        <div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">OpenAI API</span><span class="project-tag">Slack API</span></div>
+        <div class="project-links"><a class="project-link" href="https://slackbot-mvp.onrender.com/" target="_blank">Live Demo</a><a class="project-link" href="https://github.com/devshaily/slackbot-mvp" target="_blank">GitHub</a></div>
+      </div>
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>Industrial Defect Detection (FlexiGO)</h3>
+        <p>Real-time CV defect detection integrated into a C#/WPF machine UI with ONNX Runtime and FastAPI backend services.</p>
+        <div class="project-tags"><span class="project-tag">ONNX</span><span class="project-tag">WPF</span><span class="project-tag">FastAPI</span></div>
+        <div class="project-links"><span class="note-dim">Internal deployment</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-year">2021–22</div>
+        <h3>Interactive CV & Web Apps</h3>
+        <p>Realtime Object Identification, Voice Selfie, Teachable Machine demos, canvas apps, and more — all live on GitHub Pages.</p>
+        <div class="project-tags"><span class="project-tag">TensorFlow.js</span><span class="project-tag">JavaScript</span><span class="project-tag">Web</span></div>
+        <div class="project-links"><a class="project-link" href="https://devshaily.github.io/ImageIdentificationUsingTeachableMachine/" target="_blank">Live Demo</a><a class="project-link" href="https://github.com/devshaily/Portfolio/blob/main/Mini_Portfolio.md" target="_blank">GitHub</a></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <p class="section-label">05 — Publications</p>
+    <h2 class="section-title">Research that <em>matters.</em></h2>
+    <div class="pub-list fade-in" id="pubList"></div>
+  </div>
+</section>
 
-    // Theme toggle with persistence and prefers-color-scheme
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-    const bodyEl = document.body;
-    const labelEl = document.getElementById('themeLabel');
-    function applyTheme(mode){
-      if(mode === 'light'){ bodyEl.classList.add('light'); labelEl.textContent = 'Light'; }
-      else { bodyEl.classList.remove('light'); labelEl.textContent = 'Dark'; }
-    }
-    applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-    document.getElementById('themeToggle')?.addEventListener('click', ()=>{
-      const next = bodyEl.classList.contains('light') ? 'dark' : 'light';
-      localStorage.setItem('theme', next);
-      applyTheme(next);
-    });
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">06 — Education</p>
+    <h2 class="section-title">Academic <em>journey.</em></h2>
+    <div class="edu-list fade-in">
+      <div class="edu-item">
+        <div class="edu-period">Feb 2023 – Feb 2025</div>
+        <h3>Masters in Information & Communication Engineering</h3>
+        <div class="inst">Chosun University, South Korea</div>
+        <p>Major: Deep Learning / Artificial Intelligence · GPA: 4.31 / 4.5</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period">Aug 2014 – Jun 2018</div>
+        <h3>Bachelor of Technology (Honours) — Computer Science & Engineering</h3>
+        <div class="inst">Lovely Professional University, India</div>
+        <p>GPA: 7.23 / 10 · First Division</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Reveal on scroll (robust + initial pass)
-    try{
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-      }, {threshold:.12});
-      document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-      document.querySelectorAll('.reveal').forEach(el=>{
-        const r = el.getBoundingClientRect();
-        if(r.top < window.innerHeight) el.classList.add('in');
-      });
-    }catch(_){
-      document.querySelectorAll('.reveal').forEach(el=> el.classList.add('in'));
-    }
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">07 — Contact</p>
+    <h2 class="section-title">Let's <em>connect.</em></h2>
+    <div class="contact-grid fade-in">
+      <form class="contact-form-card" id="contactForm">
+        <input type="text" name="name" placeholder="Your name" required/>
+        <input type="email" name="email" placeholder="Your email" required/>
+        <textarea name="message" placeholder="Your message…" required></textarea>
+        <button class="btn btn-primary" type="submit" style="width:fit-content">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
+        <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io and paste your endpoint URL in the script below</p>
+      </form>
+      <div class="contact-links">
+        <a class="contact-link-btn" href="mailto:shaily.bajpai19@gmail.com"><span>Email</span><small>shaily.bajpai19@gmail.com ↗</small></a>
+        <a class="contact-link-btn" href="https://github.com/devshaily" target="_blank"><span>GitHub</span><small>devshaily ↗</small></a>
+        <a class="contact-link-btn" href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank"><span>LinkedIn</span><small>shaily-bajpai ↗</small></a>
+        <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
+        <a class="contact-link-btn" href="Shaily-Bajpai-FlowCV-Resume-20251031.pdf" download><span>Download CV</span><small>PDF ↗</small></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Command palette (Ctrl/Cmd+K)
-    const cmdk = document.getElementById('cmdk');
-    const cmdkInput = document.getElementById('cmdk-input');
-    const cmdkResults = document.getElementById('cmdk-results');
-    const items = [
-      {label:'Home', action:() => document.querySelector('#home').scrollIntoView({behavior:'smooth'})},
-      {label:'Projects', action:() => document.querySelector('#projects').scrollIntoView({behavior:'smooth'})},
-      {label:'Skills', action:() => document.querySelector('#skills').scrollIntoView({behavior:'smooth'})},
-      {label:'Publications', action:() => document.querySelector('#publications').scrollIntoView({behavior:'smooth'})},
-      {label:'Contact', action:() => document.querySelector('#contact').scrollIntoView({behavior:'smooth'})},
-      {label:'CV (PDF)', action:() => window.open('/Shaily-Bajpai-FlowCV-Resume-20251031.pdf','_blank')},
-      {label:'Design Portfolio (Canva)', action:() => window.open('https://shaily.my.canva.site/','_blank')},
-      {label:'GitHub', action:() => window.open('https://github.com/devshaily','_blank')},
-      {label:'LinkedIn', action:() => window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
-      {label:'Google Scholar', action:() => window.open('https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID','_blank')}
-    ];
-    function renderCmdk(filter=''){
-      const q = filter.trim().toLowerCase();
-      const res = items.filter(i => i.label.toLowerCase().includes(q));
-      cmdkResults.innerHTML = res.map(i => `<button class="btn" style="display:block;width:100%;text-align:left;margin:8px 12px" data-label="${i.label}">${i.label}</button>`).join('') || '<div class="note" style="padding:12px 16px">No matches</div>';
-    }
-    function openCmdk(){ cmdk.style.display='flex'; renderCmdk(); setTimeout(()=>cmdkInput.focus(),0); }
-    function closeCmdk(){ cmdk.style.display='none'; cmdkInput.value=''; cmdkResults.innerHTML=''; }
-    window.addEventListener('keydown', (e) => {
-      const isMac = navigator.platform.toUpperCase().includes('MAC');
-      if ((isMac && e.metaKey && e.key.toLowerCase()==='k') || (!isMac && e.ctrlKey && e.key.toLowerCase()==='k')) {
-        e.preventDefault(); openCmdk();
-      }
-      if(e.key === 'Escape' && cmdk.style.display==='flex') closeCmdk();
-    });
-    cmdk.addEventListener('click', (e)=>{ if(e.target === cmdk) closeCmdk(); });
-    cmdkInput?.addEventListener('input', ()=> renderCmdk(cmdkInput.value));
-    cmdkResults.addEventListener('click', (e)=>{
-      const btn = e.target.closest('button[data-label]');
-      if(!btn) return; const label = btn.getAttribute('data-label');
-      const item = items.find(i=>i.label===label); if(item){ item.action(); closeCmdk(); }
-    });
+<footer>
+  <p>© <span id="yr"></span> Shaily Bajpai · <a href="https://github.com/devshaily" target="_blank">github.com/devshaily</a></p>
+  <p>GitHub Pages · Press <kbd style="border:1px solid var(--border);padding:.05rem .3rem;border-radius:3px">⌘K</kbd> to navigate</p>
+</footer>
 
-    // Contact form (Formspree demo) — replace with your own endpoint
-    const form = document.getElementById('contactForm');
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const status = document.getElementById('formStatus');
-      status.textContent = 'Sending…';
-      try{
-        // 1) Create your endpoint at https://formspree.io
-        // 2) Replace URL below with your endpoint (e.g., https://formspree.io/f/abcde)
-        const FORM_ENDPOINT = 'https://formspree.io/f/your-id-here';
-        const formData = new FormData(form);
-        const res = await fetch(FORM_ENDPOINT, { method:'POST', body: formData, headers: { 'Accept':'application/json' }});
-        if(res.ok){ status.textContent = "Thanks! I'll get back to you soon."; form.reset(); }
-        else { status.textContent = 'Something went wrong. Please email me directly.'; }
-      }catch(err){
-        status.textContent = 'Network error. Please email me directly.';
-      }
-    });
+<!-- CMD PALETTE -->
+<div id="cmdk">
+  <div class="cmdk-box">
+    <input id="cmdk-input" placeholder="Jump to… (try: projects, cv, contact)" autocomplete="off"/>
+    <div id="cmdk-results"></div>
+    <div class="cmdk-footer">Press <strong>Ctrl / ⌘ + K</strong> to open · <strong>Esc</strong> to close</div>
+  </div>
+</div>
 
-    // === Publications data (edit here) ===
-    const publications = [
-      {
-        title: 'DentAll: Annotation-Efficient Dental Segmentation and Missing-Tooth Localization in Panoramic Radiographs',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'Computers in Biology and Medicine (Under Review), 2025',
-        links: { pdf: '', doi: '', code: '' },
-        note: 'First author'
-      },
-      {
-        title: 'IA-MUNet: A Knowledge-Guided Instance-Aware Mamba-UNet for Efficient Multiclass Dental Image Segmentation',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'Knowledge-Based Systems (Revision), 2025',
-        links: { pdf: '', doi: '', code: '' },
-        note: 'Second author'
-      },
-      {
-        title: 'DualBranchNetwork3D: A Hybrid CNN–Swin Transformer Model for Automated Cirrhotic Liver Segmentation on MRI',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'IEEE Access (Revision), 2025',
-        links: { pdf: '', doi: '', code: '' },
-        note: 'Third author'
-      },
-      {
-        title: 'Advanced Teeth Instance Segmentation Using Contextual Spatial Attention and Deeper Mask Head',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'IEEE ICCE, 2025',
-        links: { pdf: 'https://ieeexplore.ieee.org/document/10930043', doi: '', code: '' },
-        note: 'First author'
-      },
-      {
-        title: 'UNET-based Multiclass Teeth Segmentation in Panoramic Dental Radiographs',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'KICS Summer Conference, 2024',
-        links: { pdf: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11906278', doi: '', code: '' },
-        note: 'First author'
-      },
-      {
-        title: 'Advances in Tooth Detection and Segmentation in Dental Panoramic X-ray Images: A Review',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'KICS Summer Conference, 2023',
-        links: { pdf: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11487625', doi: '', code: '' },
-        note: 'First author'
-      },
-      {
-        title: 'Development of Ethernet/IP Adapter for Explicit Messaging in Cooperative Robot Communication',
-        authors: 'Shaily Bajpai, et al.',
-        venue: 'ICCAS, 2022',
-        links: { pdf: 'https://dl.nanet.go.kr/SearchDetailView.do?cn=KDMT12025000020637&sysid=nadl#none', doi: '', code: '' },
-        note: 'First author'
-      }
-    ];
+<script>
+// ── PUBLICATIONS (edit here to add/update) ──
+const publications = [
+  { year:'2025', note:'First author · Under Review',
+    title:'DentAll: Annotation-Efficient Dental Segmentation and Missing-Tooth Localization in Panoramic Radiographs',
+    venue:'Computers in Biology and Medicine', links:{pdf:'',code:''} },
+  { year:'2025', note:'Second author · Revision',
+    title:'IA-MUNet: A Knowledge-Guided Instance-Aware Mamba-UNet for Efficient Multiclass Dental Image Segmentation',
+    venue:'Knowledge-Based Systems', links:{pdf:'',code:''} },
+  { year:'2025', note:'Third author · Revision',
+    title:'DualBranchNetwork3D: A Hybrid CNN–Swin Transformer Model for Automated Cirrhotic Liver Segmentation on MRI',
+    venue:'IEEE Access', links:{pdf:'',code:''} },
+  { year:'2025', note:'First author',
+    title:'Advanced Teeth Instance Segmentation Using Contextual Spatial Attention and Deeper Mask Head',
+    venue:'IEEE ICCE 2025', links:{pdf:'https://ieeexplore.ieee.org/document/10930043',code:''} },
+  { year:'2024', note:'First author',
+    title:'UNET-based Multiclass Teeth Segmentation in Panoramic Dental Radiographs',
+    venue:'KICS Summer Conference 2024', links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11906278',code:''} },
+  { year:'2023', note:'First author',
+    title:'Advances in Tooth Detection and Segmentation in Dental Panoramic X-ray Images: A Review',
+    venue:'KICS Summer Conference 2023', links:{pdf:'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11487625',code:''} },
+  { year:'2022', note:'First author',
+    title:'Development of Ethernet/IP Adapter for Explicit Messaging in Cooperative Robot Communication',
+    venue:'ICCAS 2022', links:{pdf:'https://ieeexplore.ieee.org/document/10003850',code:''} }
+];
 
-    const pubList = document.getElementById('pubList');
-    if (pubList){
-      publications.forEach(p => {
-        const card = document.createElement('article');
-        card.className = 'card p24 project';
-        const safe = (x) => x || '';
-        const btn = (href, label) => href ? `<a class="btn" href="${href}" target="_blank" rel="noopener">${label}</a>` : `<span class="btn" style="opacity:.5;pointer-events:none">${label}</span>`;
-        card.innerHTML = `
-          <h3>${p.title}</h3>
-          <p>${p.authors} · <em>${p.venue}</em></p>
-          ${p.note ? `<p class="note">${p.note}</p>` : ''}
-          <p style="display:flex;flex-wrap:wrap;gap:10px">${[
-            btn(safe(p.links?.pdf), 'PDF'),
-            btn(safe(p.links?.doi), 'DOI'),
-            btn(safe(p.links?.code), 'Code')
-          ].join('')}</p>
-        `;
-        pubList.appendChild(card);
-      });
-    }
+const pubList = document.getElementById('pubList');
+publications.forEach(p => {
+  const el = document.createElement('div');
+  el.className = 'pub-card';
+  const lnk = (h,l) => h
+    ? `<a class="pub-link" href="${h}" target="_blank" rel="noopener">${l}</a>`
+    : `<span class="pub-link disabled">${l}</span>`;
+  el.innerHTML = `
+    <div class="pub-year">${p.year}</div>
+    <div class="pub-content">
+      <h3>${p.title}</h3>
+      <div class="pub-venue">${p.venue}</div>
+      ${p.note ? `<span class="pub-note">${p.note}</span>` : ''}
+      <div class="pub-links">${lnk(p.links.pdf,'PDF')}${lnk(p.links.code,'Code')}</div>
+    </div>`;
+  pubList.appendChild(el);
+});
 
-    // ===== Minimal self-tests =====
-    (function runSelfTests(){
-      const tests = [];
-      function test(name, fn){
-        try { fn(); tests.push({name, pass:true}); }
-        catch(e){ console.error('Test failed:', name, e); tests.push({name, pass:false, error:e}); }
-      }
+// ── THEME ──
+const saved = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+function applyTheme(mode){
+  document.body.classList.toggle('light', mode==='light');
+  document.getElementById('themeLabel').textContent = mode==='light' ? 'Light' : 'Dark';
+  document.getElementById('themeIcon').textContent  = mode==='light' ? '☀️' : '🌙';
+}
+applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  const next = document.body.classList.contains('light') ? 'dark' : 'light';
+  localStorage.setItem('theme', next); applyTheme(next);
+});
 
-      test('No syntax error in success message string', () => {
-        const msg = "Thanks! I'll get back to you soon.";
-        if(typeof msg !== 'string' || !msg.includes("I'll")) throw new Error('Bad string');
-      });
+// ── MOBILE MENU ──
+document.getElementById('menuBtn').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('navLinks').classList.remove('open'));
+});
 
-      test('Single navLinks exists', () => {
-        const count = document.querySelectorAll('#navLinks').length;
-        if(count !== 1) throw new Error('Expected 1 navLinks, found '+count);
-      });
+// ── SCROLL ANIMATIONS ──
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+},{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>{ io.observe(el);
+  if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+});
 
-      test('Single menuBtn exists', () => {
-        const count = document.querySelectorAll('#menuBtn').length;
-        if(count !== 1) throw new Error('Expected 1 menuBtn, found '+count);
-      });
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href');
+    if(!id||id==='#') return;
+    e.preventDefault();
+    document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+  });
+});
 
-      test('Publications container exists', () => {
-        if(!document.getElementById('pubList')) throw new Error('pubList missing');
-      });
+// ── CONTACT FORM ──
+document.getElementById('contactForm')?.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const status = document.getElementById('formStatus');
+  status.textContent = 'Sending…';
+  try{
+    const ENDPOINT = 'https://formspree.io/f/your-id-here'; // 👈 Replace with your Formspree endpoint
+    const res = await fetch(ENDPOINT,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
+    status.textContent = res.ok ? "Thanks! I'll be in touch soon." : 'Something went wrong — please email me directly.';
+    if(res.ok) e.target.reset();
+  } catch(_){ status.textContent = 'Network error — please email me directly.'; }
+});
 
-      const passed = tests.filter(t=>t.pass).length;
-      const failed = tests.length - passed;
-      console.log(`Self-tests: ${passed} passed, ${failed} failed`);
-    })();
-  </script>
+// ── FOOTER YEAR ──
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ── CMD PALETTE ──
+const cmdk = document.getElementById('cmdk');
+const cmdkInput = document.getElementById('cmdk-input');
+const cmdkResults = document.getElementById('cmdk-results');
+const cmdItems = [
+  {label:'Home',          fn:()=>window.scrollTo({top:0,behavior:'smooth'})},
+  {label:'About',         fn:()=>document.querySelector('#about').scrollIntoView({behavior:'smooth'})},
+  {label:'Experience',    fn:()=>document.querySelector('#experience').scrollIntoView({behavior:'smooth'})},
+  {label:'Projects',      fn:()=>document.querySelector('#projects').scrollIntoView({behavior:'smooth'})},
+  {label:'Publications',  fn:()=>document.querySelector('#publications').scrollIntoView({behavior:'smooth'})},
+  {label:'Education',     fn:()=>document.querySelector('#education').scrollIntoView({behavior:'smooth'})},
+  {label:'Contact',       fn:()=>document.querySelector('#contact').scrollIntoView({behavior:'smooth'})},
+  {label:'CV (PDF)',      fn:()=>window.open('Shaily-Bajpai-FlowCV-Resume-20251031.pdf','_blank')},
+  {label:'GitHub',        fn:()=>window.open('https://github.com/devshaily','_blank')},
+  {label:'LinkedIn',      fn:()=>window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
+  {label:'Design Portfolio', fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
+];
+function renderCmdk(q=''){
+  const f = cmdItems.filter(i=>i.label.toLowerCase().includes(q.toLowerCase()));
+  cmdkResults.innerHTML = f.length
+    ? f.map(i=>`<button style="display:block;width:100%;text-align:left;padding:.75rem 1.2rem;background:none;border:0;border-bottom:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'" data-label="${i.label}">${i.label}</button>`).join('')
+    : '<div style="padding:1rem 1.2rem;color:var(--muted);font-size:.82rem">No results</div>';
+}
+const openCmdk = ()=>{ cmdk.style.display='flex'; renderCmdk(); setTimeout(()=>cmdkInput.focus(),0); };
+const closeCmdk = ()=>{ cmdk.style.display='none'; cmdkInput.value=''; };
+window.addEventListener('keydown', e=>{
+  const mod = /mac/i.test(navigator.platform) ? e.metaKey : e.ctrlKey;
+  if(mod && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmdk(); }
+  if(e.key==='Escape') closeCmdk();
+});
+cmdk.addEventListener('click', e=>{ if(e.target===cmdk) closeCmdk(); });
+cmdkInput.addEventListener('input', ()=>renderCmdk(cmdkInput.value));
+cmdkResults.addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-label]');
+  if(!btn) return;
+  cmdItems.find(i=>i.label===btn.getAttribute('data-label'))?.fn();
+  closeCmdk();
+});
+</script>
 </body>
 </html>
