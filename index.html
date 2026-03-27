@@ -7,7 +7,7 @@
 <meta name="description" content="Portfolio of Shaily Bajpai — AI Researcher specialising in Medical Imaging, Computer Vision and LLM systems."/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2300c9a7'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%230a0d0f' letter-spacing='0.5'>SB</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>A
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -53,7 +53,21 @@ body.light nav{background:rgba(244,246,249,.92)}
 .hero h1 em{color:var(--accent);font-style:italic}
 .hero-sub{font-size:.95rem;color:var(--muted);margin-bottom:.6rem;font-weight:400}
 .hero-sub strong{color:var(--text);font-weight:500}
-.hero-exp{font-size:.88rem;color:var(--text);margin-bottom:.4rem;font-weight:400}.hero-at{color:var(--accent)}.hero-open{font-size:.82rem;color:var(--muted);margin-bottom:2rem;line-height:1.7}
+.hero-at{color:var(--accent)}
+.hero-timeline{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.hero-timeline-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem}
+.hero-tl-dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--border);flex-shrink:0}
+.hero-tl-dot.active{background:var(--accent)}
+.hero-tl-role{color:var(--text);font-weight:500}
+.hero-tl-role.muted{color:var(--muted);font-weight:400}
+.hero-tl-org{color:var(--text)}
+.hero-tl-org.muted{color:var(--muted)}
+.hero-tl-date{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted);margin-left:auto}
+.hero-awards{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.8rem}
+.hero-award{font-size:.72rem;padding:.28rem .75rem;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,201,167,.25)}
+.stat-cat{font-size:.62rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.num-unit{font-size:.9rem;font-weight:300;color:var(--muted);margin-left:.15rem}
+.stat-word{font-size:1.1rem !important;line-height:1.2}
 .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;border-radius:8px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Outfit',sans-serif}
 .btn-primary{background:var(--accent);color:#0a0d0f;border:none}
@@ -225,10 +239,11 @@ footer a{color:var(--accent);text-decoration:none}
     </svg>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#selected-work">Featured</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Publications</a></li>
+    <li><a href="#certifications">Awards</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -243,11 +258,40 @@ footer a{color:var(--accent);text-decoration:none}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content fade-in">
-    <div class="hero-tag">AI/ML Researcher & Engineer</div>
+    <div class="hero-tag">AI Research Engineer</div>
     <h1>Shaily<br/><em>Bajpai</em></h1>
-    <p class="hero-sub">Chosun University, South Korea</p>
-    <p class="hero-exp">ML Engineer <span class="hero-at">@</span> FlexiGO &nbsp;·&nbsp; Ex-Research Assistant <span class="hero-at">@</span> Chosun MIP Lab</p>
-    <p class="hero-open">Open to roles in Medical AI &nbsp;·&nbsp; LLM Engineering &nbsp;·&nbsp; Computer Vision</p>
+    <p class="hero-sub">Cheonan, South Korea &nbsp;·&nbsp; <span style="color:var(--accent)">IEEE Peer Reviewer</span></p>
+
+    <div class="hero-timeline">
+      <div class="hero-timeline-item active">
+        <span class="hero-tl-dot active"></span>
+        <span class="hero-tl-role">AI Engineer</span>
+        <span class="hero-at">@</span>
+        <span class="hero-tl-org">FlexiGO</span>
+        <span class="hero-tl-date">2025–now</span>
+      </div>
+      <div class="hero-timeline-item">
+        <span class="hero-tl-dot"></span>
+        <span class="hero-tl-role muted">Research Assistant</span>
+        <span class="hero-at">@</span>
+        <span class="hero-tl-org muted">Chosun MIP Lab</span>
+        <span class="hero-tl-date">2023–25</span>
+      </div>
+      <div class="hero-timeline-item">
+        <span class="hero-tl-dot"></span>
+        <span class="hero-tl-role muted">Research Assistant</span>
+        <span class="hero-at">@</span>
+        <span class="hero-tl-org muted">SunMoon University</span>
+        <span class="hero-tl-date">2022–23</span>
+      </div>
+    </div>
+
+    <div class="hero-awards">
+      <span class="hero-award">🏆 Patent Innovation Award</span>
+      <span class="hero-award">🏆 Best Presentation · ICCE 2025</span>
+      <span class="hero-award">📚 Research Scholarship ×4</span>
+    </div>
+
     <div class="hero-actions">
       <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
       <a class="btn btn-secondary" href="#publications">Publications</a>
@@ -259,7 +303,7 @@ footer a{color:var(--accent);text-decoration:none}
       <span>·</span>
       <a href="https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en" target="_blank">Scholar</a>
       <span>·</span>
-      <a href="/cdn-cgi/l/email-protection#04776c656d687d66656e74656d2a3435446369656d682a676b69">Email</a>
+      <a href="mailto:shailybajpai.01@gmail.com">Email</a>
     </div>
     <p style="margin-top:1.2rem;font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)">Press <kbd style="border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;background:var(--surface)">⌘K</kbd> for quick nav</p>
   </div>
@@ -268,14 +312,30 @@ footer a{color:var(--accent);text-decoration:none}
       <img src="entity.jpg" alt="Shaily Bajpai" class="avatar-img" onerror="this.outerHTML='<div class=\'avatar-placeholder\'>👩‍💻</div>'">
       <div class="avatar-info">
         <h3>Shaily Bajpai</h3>
-        <p>AI Research Scholar<br/>Chosun University 🇰🇷</p>
+        <p>AI Research Engineer<br/>Cheonan, South Korea 🇰🇷</p>
       </div>
     </div>
     <div class="stat-cards">
-      <div class="stat-card"><div class="num">7</div><div class="label">Publications</div></div>
-      <div class="stat-card"><div class="num">2</div><div class="label">Patents</div></div>
-      <div class="stat-card"><div class="num" style="font-size:1.4rem">Medical</div><div class="label">Imaging AI</div></div>
-      <div class="stat-card"><div class="num" style="font-size:1.15rem;line-height:1.2">Industrial</div><div class="label">Defect Detection</div></div>
+      <div class="stat-card">
+        <div class="stat-cat">Experience</div>
+        <div class="num">6<span class="num-unit">+ yrs</span></div>
+        <div class="label">3<span class="num-unit">+ yrs</span> in AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-cat">Research</div>
+        <div class="num">7</div>
+        <div class="label">Publications · 2 Patents</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-cat">Domain 1</div>
+        <div class="num stat-word">Medical Imaging</div>
+        <div class="label">& Deep Learning</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-cat">Domain 2</div>
+        <div class="num stat-word">Industrial CV</div>
+        <div class="label">Defect Detection</div>
+      </div>
     </div>
     <div class="focus-card">
       <h4>Research Focus</h4>
@@ -291,6 +351,32 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
+<!-- SELECTED WORK -->
+<section id="selected-work">
+  <div class="container">
+    <p class="section-label">Featured</p>
+    <h2 class="section-title">Selected <em>work.</em></h2>
+    <div class="projects-grid fade-in">
+      <div class="project-card" style="border-color:var(--accent);position:relative">
+        <div style="position:absolute;top:1rem;right:1rem;font-size:.62rem;font-family:'DM Mono',monospace;padding:.2rem .6rem;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,201,167,.3)">Featured</div>
+        <div class="project-year">2025 · Under Review</div>
+        <h3>DentAll — Dental Segmentation & Missing-Tooth Localisation</h3>
+        <p>Annotation-efficient framework for simultaneous instance-level teeth segmentation and missing-tooth detection in panoramic radiographs. Submitted to Computers in Biology and Medicine.</p>
+        <div class="project-tags"><span class="project-tag">PyTorch</span><span class="project-tag">Instance Segmentation</span><span class="project-tag">Medical AI</span></div>
+        <div class="project-links"><a class="project-link" href="#publications">See Publication</a></div>
+      </div>
+      <div class="project-card" style="border-color:var(--accent2);position:relative">
+        <div style="position:absolute;top:1rem;right:1rem;font-size:.62rem;font-family:'DM Mono',monospace;padding:.2rem .6rem;border-radius:100px;background:rgba(255,127,87,.1);color:var(--accent2);border:1px solid rgba(255,127,87,.3)">Featured</div>
+        <div class="project-year">2025 · Deployed</div>
+        <h3>Industrial Defect Detection — FlexiGO</h3>
+        <p>Real-time computer vision pipeline for industrial defect detection, integrated into a C#/WPF machine UI. Deployed in production with ONNX Runtime and FastAPI backend.</p>
+        <div class="project-tags"><span class="project-tag">ONNX</span><span class="project-tag">FastAPI</span><span class="project-tag">WPF</span><span class="project-tag">Real-time CV</span></div>
+        <div class="project-links"><span class="note-dim">Available on request</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -298,16 +384,15 @@ footer a{color:var(--accent);text-decoration:none}
     <h2 class="section-title">Driven by <em>curiosity,</em><br/>grounded in data.</h2>
     <div class="about-grid fade-in">
       <div class="about-text">
-        <p>I am a <strong>dynamic and innovative AI researcher</strong> currently based at Chosun University, South Korea, where I focus on deep learning for medical imaging — particularly dental panoramic radiographs and liver MRI — to assist clinicians with more accurate, efficient decision-making.</p>
-        <p>Beyond medical AI, I build <strong>applied LLM systems</strong>: Slackbot content pipelines, multi-agent research assistants, and real-time defect detection integrated into industrial UIs. I care about the full stack — from model training to production deployment.</p>
-        <p>With a BTech in Computer Science (Lovely Professional University) and an MSc in Information & Communication Engineering specialising in Deep Learning (Chosun University, GPA 4.31/4.5), I bring academic rigour and hands-on engineering to every project.</p>
-        <p>Actively seeking opportunities in <strong>Deep Learning, Medical AI, Computer Vision, and LLM Engineering</strong> — research and industry alike.</p>
+        <p>I build deep learning systems for <strong>medical imaging</strong> — focusing on dental panoramic radiographs and liver MRI — to support clinical decision-making. My work spans model design, training, and deployment, with publications in IEEE, Knowledge-Based Systems, and Computers in Biology and Medicine.</p>
+        <p>Beyond medical AI, I develop <strong>applied AI systems</strong> for real-world environments: LLM pipelines, multi-agent research assistants, and computer vision integrated into industrial UIs. I work across the full stack — from research prototype to production deployment.</p>
+        <p>Actively seeking opportunities in <strong>Medical AI, LLM Engineering, and Computer Vision</strong> — research and industry alike.</p>
       </div>
       <div class="about-sidebar">
-        <div class="info-block"><h5>Current Role</h5><p><strong>ML Engineer @ FlexiGO</strong>Industrial defect detection · FastAPI · WPF</p></div>
+        <div class="info-block"><h5>Current Role</h5><p><strong>AI Engineer @ FlexiGO Inc.</strong>Industrial defect detection · FastAPI · WPF · ONNX</p></div>
         <div class="info-block"><h5>Research</h5><p>Medical Image Analysis · Dental AI · LLM Agents · Multi-Agent Systems</p></div>
         <div class="info-block"><h5>Languages</h5><p>English (Fluent) · Hindi (Native) · Korean (Basic)</p></div>
-        <div class="info-block"><h5>Location</h5><p>South Korea 🇰🇷 · Open to relocation</p></div>
+        <div class="info-block"><h5>Location</h5><p>Cheonan, South Korea 🇰🇷 · Open to relocation</p></div>
       </div>
     </div>
   </div>
@@ -319,10 +404,10 @@ footer a{color:var(--accent);text-decoration:none}
     <p class="section-label">Skills</p>
     <h2 class="section-title">Tools of the <em>trade.</em></h2>
     <div class="skills-grid fade-in">
-      <div class="skill-group"><h4>AI / ML</h4><div class="skill-pills"><span class="skill-pill">LLMs & VLMs</span><span class="skill-pill">Computer Vision</span><span class="skill-pill">Medical Imaging</span><span class="skill-pill">Instance Segmentation</span><span class="skill-pill">Multi-Agent Systems</span></div></div>
-      <div class="skill-group"><h4>Frameworks</h4><div class="skill-pills"><span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">OpenCV</span><span class="skill-pill">ONNX Runtime</span><span class="skill-pill">Transformers</span></div></div>
-      <div class="skill-group"><h4>Engineering</h4><div class="skill-pills"><span class="skill-pill">FastAPI</span><span class="skill-pill">Docker</span><span class="skill-pill">Flask</span><span class="skill-pill">C# / WPF</span><span class="skill-pill">AWS / Azure ML</span></div></div>
-      <div class="skill-group"><h4>Languages & Tools</h4><div class="skill-pills"><span class="skill-pill">Python</span><span class="skill-pill">C++</span><span class="skill-pill">JavaScript</span><span class="skill-pill">R</span><span class="skill-pill">GitHub</span><span class="skill-pill">Jupyter</span></div></div>
+      <div class="skill-group"><h4>Machine Learning</h4><div class="skill-pills"><span class="skill-pill">Deep Learning</span><span class="skill-pill">Annotation-Efficient Learning</span><span class="skill-pill">Domain Adaptation</span><span class="skill-pill">Uncertainty-Aware Inference</span><span class="skill-pill">Robustness Analysis</span></div></div>
+      <div class="skill-group"><h4>Computer Vision</h4><div class="skill-pills"><span class="skill-pill">Object Detection</span><span class="skill-pill">Image Segmentation</span><span class="skill-pill">Visual Anomaly Detection</span><span class="skill-pill">Vision–Language Models</span><span class="skill-pill">Multimodal Learning</span></div></div>
+      <div class="skill-group"><h4>Frameworks</h4><div class="skill-pills"><span class="skill-pill">PyTorch</span><span class="skill-pill">Hugging Face Transformers</span><span class="skill-pill">OpenCV</span><span class="skill-pill">ONNX Runtime</span><span class="skill-pill">Scikit-learn</span></div></div>
+      <div class="skill-group"><h4>Engineering</h4><div class="skill-pills"><span class="skill-pill">Python</span><span class="skill-pill">C++</span><span class="skill-pill">C# / WPF</span><span class="skill-pill">FastAPI</span><span class="skill-pill">Docker</span></div></div>
     </div>
   </div>
 </section>
@@ -334,27 +419,27 @@ footer a{color:var(--accent);text-decoration:none}
     <h2 class="section-title">Where I've <em>worked.</em></h2>
     <div class="exp-grid fade-in">
       <div class="exp-card">
-        <h3>ML Engineer — FlexiGO</h3>
+        <h3>AI Engineer — FlexiGO Inc.</h3>
         <div class="exp-period">Jan 2025 – Present</div>
-        <p>Developed and deployed ML pipelines for industrial defect detection using FastAPI & Docker; integrated inference into C#/WPF UIs; led training & testing with SOTA models.</p>
-        <div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">Docker</span><span class="project-tag">WPF</span><span class="project-tag">ONNX</span></div>
+        <p>Led end-to-end low-data industrial defect detection pipeline — dataset strategy, training, evaluation, and deployment into operator-facing C#/WPF inspection workflows. Developed adaptive methods robust to distribution shift; implemented uncertainty-aware inference for ambiguous case flagging.</p>
+        <div class="project-tags"><span class="project-tag">ONNX</span><span class="project-tag">FastAPI</span><span class="project-tag">Docker</span><span class="project-tag">WPF</span><span class="project-tag">Few-shot</span></div>
       </div>
       <div class="exp-card">
         <h3>Research Assistant — MIP Lab, Chosun University</h3>
         <div class="exp-period">Feb 2023 – Jan 2025</div>
-        <p>Designed deep learning models for medical image segmentation and classification; authored and co-authored multiple publications in interdisciplinary teams.</p>
-        <div class="project-tags"><span class="project-tag">Medical CV</span><span class="project-tag">PyTorch</span><span class="project-tag">Segmentation</span></div>
+        <p>Research on annotation-efficient and robust deep learning for medical image segmentation and localisation. Systematic ablation studies on model generalisation under noisy and imbalanced data. Co-authored multiple peer-reviewed publications.</p>
+        <div class="project-tags"><span class="project-tag">Medical CV</span><span class="project-tag">PyTorch</span><span class="project-tag">Segmentation</span><span class="project-tag">Ablation Studies</span></div>
       </div>
       <div class="exp-card">
-        <h3>AI Research Assistant — Multi-Agent Pipeline</h3>
-        <div class="exp-period">2025</div>
-        <p>Built an autonomous multi-agent pipeline (Planner · Researcher · Writer · Editor) for literature synthesis with GPT-4; integrated arXiv, Tavily & Wikipedia APIs; Dockerized CLI.</p>
-        <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">Docker</span><span class="project-tag">OpenAI</span></div>
+        <h3>Research Assistant — SunMoon University</h3>
+        <div class="exp-period">Feb 2022 – Feb 2023</div>
+        <p>Research on industrial automation communication systems (Ethernet/IP). First-author publication at IEEE ICCAS 2022.</p>
+        <div class="project-tags"><span class="project-tag">Ethernet/IP</span><span class="project-tag">IEEE</span><span class="project-tag">Industrial Automation</span></div>
       </div>
       <div class="exp-card">
         <h3>Technical Head — Mechlergy</h3>
         <div class="exp-period">2022</div>
-        <p>Led technical team from concept to deployment on engineering solutions, including AI integration and systems design.</p>
+        <p>Led a technical team from concept to deployment on engineering solutions, including AI integration and systems design.</p>
         <div class="project-tags"><span class="project-tag">Leadership</span><span class="project-tag">AI Systems</span></div>
       </div>
     </div>
@@ -387,11 +472,18 @@ footer a{color:var(--accent);text-decoration:none}
         <h3>Multi-Agent Research Assistant</h3>
         <p>Autonomous pipeline (Planner · Researcher · Writer · Editor) integrating GPT-4, arXiv, Tavily, Wikipedia. Dockerized CLI generates Markdown/HTML reports.</p>
         <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">OpenAI</span><span class="project-tag">Docker</span></div>
-        <div class="project-links"><span class="note-dim">Code private</span></div>
+        <div class="project-links"><span class="note-dim">Code available on request</span></div>
       </div>
     </div>
     <p class="sub-heading" style="margin-top:2.5rem">Applied AI & Deployments</p>
     <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-year">2025</div>
+        <h3>Multi-Agent Research Assistant</h3>
+        <p>Autonomous pipeline (Planner · Researcher · Writer · Editor) integrating GPT-4, arXiv, Tavily, and Wikipedia. Dockerized CLI that generates structured Markdown/HTML reports.</p>
+        <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">OpenAI</span><span class="project-tag">Docker</span></div>
+        <div class="project-links"><span class="note-dim">Code available on request</span></div>
+      </div>
       <div class="project-card">
         <div class="project-year">2025</div>
         <h3>Slackbot Content Pipeline</h3>
@@ -404,7 +496,7 @@ footer a{color:var(--accent);text-decoration:none}
         <h3>Industrial Defect Detection (FlexiGO)</h3>
         <p>Real-time CV defect detection integrated into a C#/WPF machine UI with ONNX Runtime and FastAPI backend services.</p>
         <div class="project-tags"><span class="project-tag">ONNX</span><span class="project-tag">WPF</span><span class="project-tag">FastAPI</span></div>
-        <div class="project-links"><span class="note-dim">Internal deployment</span></div>
+        <div class="project-links"><span class="note-dim">Available on request</span></div>
       </div>
       <div class="project-card">
         <div class="project-year">2021–22</div>
@@ -459,6 +551,52 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Certifications & Awards</p>
+    <h2 class="section-title">Recognition &amp; <em>learning.</em></h2>
+    <div class="exp-grid fade-in">
+      <div class="exp-card">
+        <h3>🏆 Patent Innovation Award</h3>
+        <div class="exp-period">FlexiGO Co. Ltd. · 2026</div>
+        <p>Awarded for filing a patent on Deep Learning-Based Vision Inspection Device and Method in an industrial production environment.</p>
+        <div class="project-tags"><span class="project-tag">Patent</span><span class="project-tag">Industrial AI</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>🏆 Best Session Presentation Award</h3>
+        <div class="exp-period">IEEE ICCE 2025 · Presented by Professor</div>
+        <p>Awarded for the presentation of Advanced Teeth Instance Segmentation Using Contextual Spatial Attention and Deeper Mask Head.</p>
+        <div class="project-tags"><span class="project-tag">IEEE</span><span class="project-tag">Computer Vision</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>📚 Research Scholarship × 4 Semesters</h3>
+        <div class="exp-period">Chosun University · 2023</div>
+        <p>Consecutive research scholarship awarded for all four semesters of the MSc programme based on academic and research performance.</p>
+        <div class="project-tags"><span class="project-tag">Academic Excellence</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>Agentic AI</h3>
+        <div class="exp-period">DeepLearning.AI · 2025</div>
+        <p>Certification in Agentic AI systems design and implementation.</p>
+        <div class="project-tags"><span class="project-tag">LLM Agents</span><span class="project-tag">AI Systems</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>Generative AI: Working with LLMs</h3>
+        <div class="exp-period">LinkedIn Learning · 2025</div>
+        <p>Certification covering large language model architectures, fine-tuning, and production deployment patterns.</p>
+        <div class="project-tags"><span class="project-tag">LLMs</span><span class="project-tag">GenAI</span></div>
+      </div>
+      <div class="exp-card">
+        <h3>Docker on Azure</h3>
+        <div class="exp-period">LinkedIn Learning · 2025</div>
+        <p>Containerisation and cloud deployment on Microsoft Azure with Docker.</p>
+        <div class="project-tags"><span class="project-tag">Docker</span><span class="project-tag">Azure</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
@@ -469,13 +607,13 @@ footer a{color:var(--accent);text-decoration:none}
         <div class="edu-period">Feb 2023 – Feb 2025</div>
         <h3>Masters in Information & Communication Engineering</h3>
         <div class="inst">Chosun University, South Korea</div>
-        <p>Major: Deep Learning / Artificial Intelligence</p>
+        <p>Major: Deep Learning / Artificial Intelligence · GPA: 4.31 / 4.5</p>
       </div>
       <div class="edu-item">
         <div class="edu-period">Aug 2014 – Jun 2018</div>
-        <h3>Bachelor of Technology (Honours)</h3>
+        <h3>Bachelor of Technology (Honours) — Computer Science & Engineering</h3>
         <div class="inst">Lovely Professional University, India</div>
-        <p>Major: Computer Science & Engineering</p>
+        <p>GPA: 7.23 / 10 · First Division</p>
       </div>
     </div>
   </div>
@@ -487,14 +625,15 @@ footer a{color:var(--accent);text-decoration:none}
     <p class="section-label">Contact</p>
     <h2 class="section-title">Let's <em>connect.</em></h2>
     <div class="contact-grid fade-in">
-      <form class="contact-form-card" id="contactForm">
-        <input type="text" name="name" placeholder="Your name" required/>
-        <input type="email" name="email" placeholder="Your email" required/>
-        <textarea name="message" placeholder="Your message…" required></textarea>
-        <button class="btn btn-primary" type="submit" style="width:fit-content">Send Message</button>
-        <p class="form-status" id="formStatus"></p>
-        <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io → paste your endpoint URL in the script</p>
-      </form>
+      <div class="contact-form-card" style="display:flex;flex-direction:column;justify-content:center;gap:1.2rem">
+        <div>
+          <p style="font-size:.7rem;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Get in touch</p>
+          <p style="font-size:.92rem;color:var(--text);font-weight:500;margin-bottom:.4rem">Open to research collaborations, PhD opportunities, and industry roles.</p>
+          <p style="font-size:.82rem;color:var(--muted);line-height:1.8">For fastest response, email is best.<br/>I typically reply within 24–48 hours.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:shailybajpai.01@gmail.com" style="width:fit-content">Send an Email</a>
+        <p style="font-size:.75rem;font-family:'DM Mono',monospace;color:var(--muted)">shailybajpai.01@gmail.com</p>
+      </div>
       <div class="contact-links">
         <a class="contact-link-btn" href="/cdn-cgi/l/email-protection#c5b6ada4aca9bca7a4afb5a4acebf5f485a2a8a4aca9eba6aaa8"><span>Email</span><small><span class="__cf_email__" data-cfemail="c5b6ada4aca9bca7a4afb5a4acebf5f485a2a8a4aca9eba6aaa8">[email&#160;protected]</span> ↗</small></a>
         <a class="contact-link-btn" href="https://github.com/devshaily" target="_blank"><span>GitHub</span><small>devshaily ↗</small></a>
@@ -580,7 +719,7 @@ function renderPubs(list, containerId) {
       <div class="pub-content">
         <h3>${p.title}</h3>
         <div class="pub-venue">${p.venue}</div>
-        <div class="pub-authors">${p.authors}</div>
+        <div class="pub-authors">${p.authors.replace(/Shaily Bajpai/g, '<strong>Shaily Bajpai</strong>')}</div>
         ${badge}
         ${hasLinks ? `<div class="pub-links">${p.links.pdf ? lnk(p.links.pdf,'PDF') : ''}${p.links.doi ? lnk(p.links.doi,'DOI') : ''}</div>` : ''}
       </div>`;
@@ -661,11 +800,13 @@ const cmdkInput = document.getElementById('cmdk-input');
 const cmdkResults = document.getElementById('cmdk-results');
 const cmdItems = [
   {label:'Home',            fn:()=>window.scrollTo({top:0,behavior:'smooth'})},
+  {label:'Featured Work',    fn:()=>document.querySelector('#selected-work').scrollIntoView({behavior:'smooth'})},
   {label:'About',           fn:()=>document.querySelector('#about').scrollIntoView({behavior:'smooth'})},
   {label:'Experience',      fn:()=>document.querySelector('#experience').scrollIntoView({behavior:'smooth'})},
   {label:'Projects',        fn:()=>document.querySelector('#projects').scrollIntoView({behavior:'smooth'})},
   {label:'Publications',    fn:()=>document.querySelector('#publications').scrollIntoView({behavior:'smooth'})},
   {label:'Education',       fn:()=>document.querySelector('#education').scrollIntoView({behavior:'smooth'})},
+  {label:'Awards & Certs',   fn:()=>document.querySelector('#certifications').scrollIntoView({behavior:'smooth'})},
   {label:'Contact',         fn:()=>document.querySelector('#contact').scrollIntoView({behavior:'smooth'})},
   {label:'CV (PDF)',        fn:()=>window.open('CV.pdf','_blank')},
   {label:'GitHub',          fn:()=>window.open('https://github.com/devshaily','_blank')},
