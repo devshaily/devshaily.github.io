@@ -33,8 +33,8 @@ body.light::before{opacity:.08}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(10,13,15,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
 body.light nav{background:rgba(244,246,249,.92)}
 .nav-logo{display:inline-flex;align-items:center;text-decoration:none;transition:opacity .2s}
-.nav-logo:hover{opacity:.85}
-.nav-logo svg circle{transition:fill .35s}
+.nav-logo:hover{opacity:.8}
+.nav-logo svg{display:block}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
 .nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -51,9 +51,9 @@ body.light nav{background:rgba(244,246,249,.92)}
 .hero-tag::before{content:'●';font-size:.45rem}
 .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:1.1;color:var(--white);margin-bottom:.5rem}
 .hero h1 em{color:var(--accent);font-style:italic}
-.hero-sub{font-size:.95rem;color:var(--muted);margin-bottom:1.8rem;font-weight:400}
+.hero-sub{font-size:.95rem;color:var(--muted);margin-bottom:.6rem;font-weight:400}
 .hero-sub strong{color:var(--text);font-weight:500}
-.hero-desc{font-size:.92rem;color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.85}
+.hero-exp{font-size:.88rem;color:var(--text);margin-bottom:.4rem;font-weight:400}.hero-at{color:var(--accent)}.hero-open{font-size:.82rem;color:var(--muted);margin-bottom:2rem;line-height:1.7}
 .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;border-radius:8px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Outfit',sans-serif}
 .btn-primary{background:var(--accent);color:#0a0d0f;border:none}
@@ -218,12 +218,10 @@ footer a{color:var(--accent);text-decoration:none}
 <body>
 
 <nav>
-  <a class="nav-logo" href="#" aria-label="Shaily Bajpai">
-    <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="17" cy="17" r="17" fill="var(--accent)"/>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Georgia, 'DM Serif Display', serif"
-        font-size="13.5" font-weight="700" fill="#0a0d0f" letter-spacing="0.8">SB</text>
+    <a class="nav-logo" href="#" aria-label="Shaily Bajpai — home">
+    <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="18" fill="var(--accent)"/>
+      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,'DM Serif Display',serif" font-size="14" font-weight="700" fill="#0a0d0f" letter-spacing="1">SB</text>
     </svg>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -247,8 +245,9 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="hero-content fade-in">
     <div class="hero-tag">AI/ML Researcher & Engineer</div>
     <h1>Shaily<br/><em>Bajpai</em></h1>
-    <p class="hero-sub"><strong>Medical Imaging · Computer Vision · LLM Systems</strong><br/>Chosun University, South Korea</p>
-    <p class="hero-desc">Building adaptive AI systems across LLMs, multimodal models, and classic ML — from dental radiograph segmentation and liver MRI analysis to Slackbots, retrieval pipelines, and WPF integrations.</p>
+    <p class="hero-sub">Chosun University, South Korea</p>
+    <p class="hero-exp">ML Engineer <span class="hero-at">@</span> FlexiGO &nbsp;·&nbsp; Ex-Research Assistant <span class="hero-at">@</span> Chosun MIP Lab</p>
+    <p class="hero-open">Open to roles in Medical AI &nbsp;·&nbsp; LLM Engineering &nbsp;·&nbsp; Computer Vision</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
       <a class="btn btn-secondary" href="#publications">Publications</a>
@@ -260,7 +259,7 @@ footer a{color:var(--accent);text-decoration:none}
       <span>·</span>
       <a href="https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en" target="_blank">Scholar</a>
       <span>·</span>
-      <a href="/cdn-cgi/l/email-protection#5b28333a323722393a312b3a32756b6a1b3c363a323775383436">Email</a>
+      <a href="/cdn-cgi/l/email-protection#04776c656d687d66656e74656d2a3435446369656d682a676b69">Email</a>
     </div>
     <p style="margin-top:1.2rem;font-size:.68rem;font-family:'DM Mono',monospace;color:var(--muted)">Press <kbd style="border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;background:var(--surface)">⌘K</kbd> for quick nav</p>
   </div>
@@ -274,9 +273,9 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
     <div class="stat-cards">
       <div class="stat-card"><div class="num">7</div><div class="label">Publications</div></div>
-      <div class="stat-card"><div class="num">6+</div><div class="label">Yrs Experience</div></div>
-      <div class="stat-card"><div class="num">3+</div><div class="label">Yrs in AI</div></div>
-      <div class="stat-card"><div class="num">2</div><div class="label">Patents Filed</div></div>
+      <div class="stat-card"><div class="num">2</div><div class="label">Patents</div></div>
+      <div class="stat-card"><div class="num" style="font-size:1.4rem">Medical</div><div class="label">Imaging AI</div></div>
+      <div class="stat-card"><div class="num" style="font-size:1.15rem;line-height:1.2">Industrial</div><div class="label">Defect Detection</div></div>
     </div>
     <div class="focus-card">
       <h4>Research Focus</h4>
@@ -497,11 +496,11 @@ footer a{color:var(--accent);text-decoration:none}
         <p style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Sign up at formspree.io → paste your endpoint URL in the script</p>
       </form>
       <div class="contact-links">
-        <a class="contact-link-btn" href="/cdn-cgi/l/email-protection#cab9a2aba3a6b3a8aba0baaba3e4fafb8aada7aba3a6e4a9a5a7"><span>Email</span><small><span class="__cf_email__" data-cfemail="89fae1e8e0e5f0ebe8e3f9e8e0a7b9b8c9eee4e8e0e5a7eae6e4">[email&#160;protected]</span> ↗</small></a>
+        <a class="contact-link-btn" href="/cdn-cgi/l/email-protection#c5b6ada4aca9bca7a4afb5a4acebf5f485a2a8a4aca9eba6aaa8"><span>Email</span><small><span class="__cf_email__" data-cfemail="c5b6ada4aca9bca7a4afb5a4acebf5f485a2a8a4aca9eba6aaa8">[email&#160;protected]</span> ↗</small></a>
         <a class="contact-link-btn" href="https://github.com/devshaily" target="_blank"><span>GitHub</span><small>devshaily ↗</small></a>
         <a class="contact-link-btn" href="https://www.linkedin.com/in/shaily-bajpai-681157b6/" target="_blank"><span>LinkedIn</span><small>shaily-bajpai ↗</small></a>
-        <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank" style="opacity:.7"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
         <a class="contact-link-btn" href="CV.pdf" download><span>Download CV</span><small>PDF ↗</small></a>
+        <a class="contact-link-btn" href="https://shaily.my.canva.site/" target="_blank" style="opacity:.6"><span>Design Portfolio</span><small>Canva Site ↗</small></a>
       </div>
     </div>
   </div>
@@ -672,7 +671,7 @@ const cmdItems = [
   {label:'GitHub',          fn:()=>window.open('https://github.com/devshaily','_blank')},
   {label:'LinkedIn',        fn:()=>window.open('https://www.linkedin.com/in/shaily-bajpai-681157b6/','_blank')},
   {label:'Google Scholar',  fn:()=>window.open('https://scholar.google.com/citations?user=GA49mjMAAAAJ&hl=en','_blank')},
-  {label:'Design Portfolio (Canva)', fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
+  {label:'Design Portfolio (Canva)',fn:()=>window.open('https://shaily.my.canva.site/','_blank')},
 ];
 function renderCmdk(q='') {
   const f = cmdItems.filter(i => i.label.toLowerCase().includes(q.toLowerCase()));
